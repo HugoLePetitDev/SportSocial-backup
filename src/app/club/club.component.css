@@ -1,0 +1,157 @@
+/* CSS de la bare de recherche
+*/
+
+.well {
+  background-color: #ffffee
+}
+
+.search-form {
+  border-radius: 30px 0 0 30px;
+  margin: 5px;
+}
+
+.input-group {
+  width: 90%;
+}
+
+input-group-btn {
+  max-width: 38px;
+}
+
+#search {
+  border: 1px;
+  background-color: #FCECDD;
+}
+
+#search-this {
+  background-color: #FFC288;
+}
+
+.search-btn {
+  cursor: pointer;
+  border-radius: 0 30px 30px 0;
+  color: rgb(255, 255, 255);
+
+}
+
+
+/* CSS du scroll */
+.anyClass {
+  height: auto;
+  overflow-y: scroll;
+}
+
+/* CSS bouton */
+
+.btnPrincipal {
+  background-color: #FFC288 !important;
+}
+
+.tourBtn {
+  margin-top: 1px;
+}
+
+.btnRang {
+  padding-left: 30px;
+}
+
+.box {
+  width: 180px;
+  height: 30px;
+  font-size: 15px;
+  color: #ffffff;
+  background-color: #FFC288;
+  border-radius: 5px;
+}
+
+.card-header {
+  background-color: #FCECDD;
+  color: black;
+}
+
+.nomClub {
+  text-align: center;
+}
+
+.butInvisible {
+  background: transparent;
+  border: none !important;
+  font-size: 0;
+}
+
+#card_clubs {
+  min-height: auto;
+  max-height: 590px;
+  margin: 25px !important;
+  border: none;
+}
+
+#card_otherClub {
+  height: 400px;
+}
+
+.photo_club {
+  background-size: contain;
+  background-position: 50% 50%;
+  border: none;
+  border-radius: 5px;
+}
+
+#card_style{
+  box-shadow: none;
+  border-top: white !important;
+  border-left: white !important;
+  border-right: white !important;
+}
+
+#description {
+  text-overflow: ellipsis !important; /* will make [...] at the end */
+  overflow: hidden !important; /* older browsers */
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+            line-clamp: 2; 
+    -webkit-box-orient: vertical;
+  
+}
+
+
+/* Dark Mode CSS */
+
+.toggled {
+  color: rgb(255, 255, 255);
+  background: rgb(42, 42, 42);
+}
+
+.toggled .card-header {
+  background-color: rgb(136, 142, 183);
+  color: black;
+}
+
+
+.toggled #search {
+  border: 1px;
+  background-color: rgb(136, 142, 183);
+  color: white;
+}
+
+.toggled #search-this {
+  cursor: pointer;
+  border-radius: 0 30px 30px 0;
+  background-color: rgb(87, 90, 159);
+  color: rgb(255, 255, 255);
+
+}
+
+.toggled .btnPrincipal {
+  background-color: #3f4a6e !important;
+}
+
+.toggled .box {
+  color: #ffffff;
+  background-color: #373457;
+}
+
+.toggled #btn_dropdown {
+  background-color: #3f4a6e !important;
+}
+

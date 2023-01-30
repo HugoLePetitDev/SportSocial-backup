@@ -1,0 +1,461 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-3 p-4">
+            <div id="card_data" class="card p-0 m-0" [class.toggled]="classToggled">
+                <div class="card-header">
+                    <h3 class="text-center">Données personnelles </h3>
+                </div>
+                <div class="m-3">
+                    <div class="row">
+                        <div class="col-5">
+                            <p> Prénom : </p>
+                            <p>Nom : </p>
+                            <p>Pseudo : </p>
+                        </div>
+                        <div class="col-5">
+                            <p><b>{{authService.getUserConnect().firstNameUser}}</b></p>
+                            <p><b>{{authService.getUserConnect().lastNameUser}}</b> </p>
+                            <p><b>{{authService.getUserConnect().loginUser}}</b></p>
+                        </div>
+                        <div class="col-1">
+                            <div style="text-align: right ; margin: 3px;">
+                                <button mat-icon-button mat-icon-button [matMenuTriggerFor]="menu" #menuTrigger>
+                                    <mat-icon svgIcon="userOption" aria-hidden="false"></mat-icon>
+                                </button>
+                                <mat-menu #menu="matMenu" xPosition="before">
+                                    <button mat-menu-item (click)="goToProfile()">Gérer ses données
+                                        personnelles</button>
+                                </mat-menu>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="card_principal_amis" class="card p-0 m-0" [class.toggled]="classToggled">
+                <div class="card-header">
+                    <p class="text-center">Mes amis</p>
+                </div>
+                <div *ngIf="friends.length == 0">
+                    <button (click)="openFriendPage()" style="width : 30%; font-size: 50%; margin : 10px ;" id="feedbtn"
+                        mat-button>Ajouter des amis </button>
+                </div>
+
+                <!-- card demande d'un ami-->
+                <div class="anyClass">
+                    <div id="card_friend" class="card p-1 m-1" *ngFor="let f of friends" [class.toggled]="classToggled">
+                        <div class="container">
+                            <div class="row">
+                                <!-- photo de profil -->
+                                <div class="col-6">
+                                    <img src="{{f.imageUser.nameImage}}">
+                                </div>
+                                <!-- nom user -->
+                                <div class="col-6">
+                                    <div class="row">
+                                        <p id="add_friend_username"> {{f.firstNameUser}}</p>
+                                    </div>
+                                    <div class="col-6" style="left: 50px;">
+                                        <button mat-icon-button mat-icon-button [matMenuTriggerFor]="menu" #menuTrigger>
+                                            <mat-icon>more_vert</mat-icon>
+                                        </button>
+                                        <mat-menu #menu="matMenu" xPosition="before">
+                                            <button mat-menu-item (click)="deleteFrienship(f)">Supprimer</button>
+                                        </mat-menu>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-6 p-4 " id="feed">
+            <ul style="list-style: none;">
+                <li>
+                    <!--Search bar : centrée, avec bouton "search" à droite-->
+                    <div class="container" *ngIf="visibleSearchActivity">
+                        <div id="search-card" [class.toggled]="classToggled" style="background-color: transparent;">
+                            <div id="content">
+                                <form Activity="ngForm" (ngSubmit)="FilterActivity(Activity.value)">
+                                    <div class="input-group">
+                                        <input ngModel="" #Activity name="Activity" type='text' id='search'
+                                            class="form-control search-form" placeholder="Rechercher...">
+                                        <span class="input-group-btn" style="width:39px">
+                                            <button id="search-this" type="button" class="pull-right btn search-btn">
+                                                <i class="fa fa-search"></i>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container" *ngIf="visibleSearchEvent">
+                        <div id="search-card" [class.toggled]="classToggled" style="background-color: transparent;">
+                            <div id="content">
+                                <form Event="ngForm" (ngSubmit)="FilterEvent(Event.value)">
+                                    <div class="input-group">
+                                        <input ngModel="" #Event name="Event" type='text' id='search'
+                                            class="form-control search-form" placeholder="Rechercher...">
+                                        <span class="input-group-btn" style="width:39px">
+                                            <button id="search-this" type="button" class="pull-right btn search-btn">
+                                                <i class="fa fa-search"></i>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li style="margin : 5px; background-color: transparent;" [class.toggled]="classToggled">
+                    <button id="feedbtn" mat-button (click)="searchActivity()"
+                        (click)="seeActivity()">Activités</button>
+                    <button id="feedbtn" mat-button (click)="searchEvent()" (click)="seeEvent()"
+                        style="float: right ; margin-right: 20px;">Evènements</button>
+                </li>
+                <div>
+                    <li id="feed" class="anyClass">
+                        <div *ngIf="visibleActivity">
+                            <h4>Mes activités</h4>
+                            <div *ngIf="activite.length==0 && filterActivity !== 'hippo où es-tu ?'">
+                                <div class="card p-3 m-3 col-11" [class.toggled]="classToggled">
+                                    <p>Aucune activité enregistrée </p>
+                                    <button (click)="openCreateActivity()" style="width : 30%; font-size: 50%;"
+                                        id="feedbtn" mat-button>Ajouter une activité </button>
+                                </div>
+                            </div>
+                            <div *ngIf="filterActivity == 'hippo où es-tu ?'">
+                                <div class="card p-3 m-3 col-11" [class.toggled]="classToggled">
+                                    <p>Aucune activité enregistrée </p>
+                                    <i class="fas fa-hippo"></i>
+                                </div>
+                            </div>
+                            <div *ngIf="activite.length!=0">
+                                <div class="card p-3 m-3 col-11" *ngFor="let a of activite;  "
+                                    [class.toggled]="classToggled">
+                                    <div class="row">
+                                        <div class="col-11 justify-content-center">
+                                            <h2 class=""> {{a.activity.nameActivity}}</h2>
+                                            <i *ngIf="a.activity.sportActivity.nameSport == 'Football' "
+                                                class="fas fa-futbol"></i>
+                                            <i *ngIf="a.activity.sportActivity.nameSport == 'Escalade' "
+                                                class="fas fa-mountain"></i>
+                                            <mat-icon style=" font-size: 0.73em;"
+                                                *ngIf="a.activity.sportActivity.nameSport == 'Rugby'" svgIcon="rugby"
+                                                aria-hidden="false"></mat-icon>
+                                            <mat-icon style=" font-size: 0.73em;"
+                                                *ngIf="a.activity.sportActivity.nameSport == 'Course à pied' "
+                                                svgIcon="running" aria-hidden="false"></mat-icon>
+                                            <mat-icon style=" font-size: 0.73em;"
+                                                *ngIf="a.activity.sportActivity.nameSport == 'Natation' " svgIcon="swim"
+                                                aria-hidden="false"></mat-icon>
+                                            <mat-icon style=" font-size: 0.73em;"
+                                                *ngIf="a.activity.sportActivity.nameSport == 'Basketball' "
+                                                svgIcon="basket" aria-hidden="false"></mat-icon>
+                                        </div>
+                                        <div class="col-1">
+                                            <button mat-icon-button mat-icon-button [matMenuTriggerFor]="menu"
+                                                #menuTrigger>
+                                                <mat-icon>more_vert</mat-icon>
+                                            </button>
+                                            <mat-menu #menu="matMenu" xPosition="before">
+                                                <button mat-menu-item (click)="openModifyActivity(a)">Modifier</button>
+                                                <button mat-menu-item (click)="DeleteActivity(a)">Supprimer</button>
+                                            </mat-menu>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <b>Description :</b>
+                                            <p>{{a.activity.descActivity}}</p>
+                                        </div>
+                                        <div class="col-6">
+                                            <b>Date</b>
+                                            <p>Début : {{a.activity.dateStart | date: 'd MMM y H:mm'}}</p>
+                                            <p>Fin : {{a.activity.dateEnd | date: 'd MMM y H:mm'}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div *ngIf="friends.length !=0">
+                                <h4>Les activités de mes amis <i (click)="searchFriendActivity()"
+                                        class="fa fa-search"></i>
+                                </h4>
+                                <div class="container" *ngIf="visibleFriendActivity">
+                                    <div id="search-card" [class.toggled]="classToggled"
+                                        style="background-color: transparent;">
+                                        <div id="content">
+                                            <form ActivityF="ngForm"
+                                                (ngSubmit)="filterFriendsActivity(ActivityF.value)">
+                                                <div class="input-group">
+                                                    <input ngModel="" #ActivityF name="ActivityF" type='text'
+                                                        id='search' class="form-control search-form"
+                                                        placeholder="Rechercher...">
+                                                    <span class="input-group-btn" style="width:39px">
+                                                        <button id="search-this" type="button"
+                                                            class="pull-right btn search-btn">
+                                                            <i class="fa fa-search"></i>
+                                                        </button>
+                                                    </span>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div *ngIf="listFriendActivity.length==0">
+                                    <div class="card p-3 m-3 col-11" [class.toggled]="classToggled">
+                                        <p>Aucune activité enregistrée </p>
+                                    </div>
+                                </div>
+                                <div *ngFor="let a of listFriendActivity ">
+                                    <div *ngIf="listFriendActivity.length!=0 && a.activity.publicActivity == true">
+                                        <div *ngIf="a.activity !== undefined" class="card p-3 m-3 col-11"
+                                            [class.toggled]="classToggled">
+
+                                            <div class="row">
+                                                <div class="col-3 justify-content-center">
+                                                    <img class="photo_profil" src="{{a.user.imageUser.nameImage}}">
+                                                    <h2> {{a.user.loginUser}}</h2>
+                                                </div>
+                                                <div class="col-6">
+                                                    <h2>{{a.activity.nameActivity}}</h2>
+                                                    <i *ngIf="a.activity.sportActivity.nameSport == 'Football' "
+                                                        class="fas fa-futbol"></i>
+                                                    <i *ngIf="a.activity.sportActivity.nameSport == 'Escalade' "
+                                                        class="fas fa-mountain"></i>
+                                                    <mat-icon style=" font-size: 0.73em;"
+                                                        *ngIf="a.activity.sportActivity.nameSport == 'Rugby'"
+                                                        svgIcon="rugby" aria-hidden="false"></mat-icon>
+                                                    <mat-icon style=" font-size: 0.73em;"
+                                                        *ngIf="a.activity.sportActivity.nameSport == 'Course à pied' "
+                                                        svgIcon="running" aria-hidden="false"></mat-icon>
+                                                    <mat-icon style=" font-size: 0.73em;"
+                                                        *ngIf="a.activity.sportActivity.nameSport == 'Natation' "
+                                                        svgIcon="swim" aria-hidden="false"></mat-icon>
+                                                    <mat-icon style=" font-size: 0.73em;"
+                                                        *ngIf="a.activity.sportActivity.nameSport == 'Basketball' "
+                                                        svgIcon="basket" aria-hidden="false"></mat-icon>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <b>Description :</b>
+                                                    <p>{{a.activity.descActivity}}</p>
+                                                </div>
+                                                <div class="col-6">
+                                                    <b>Date</b>
+                                                    <p>Début : {{a.activity.dateStart | date: 'd MMM y H:mm'}}</p>
+                                                    <p>Fin : {{a.activity.dateEnd | date: 'd MMM y H:mm'}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div *ngIf="visibleEvent">
+                            <h4>Mes événements</h4>
+                            <div *ngIf="myEvents.length==0">
+                                <div class="card p-3 m-3 col-11" [class.toggled]="classToggled">
+                                    <p>Aucun évènement</p>
+                                </div>
+                            </div>
+                            <div *ngIf="myEvents.length!=0">
+                                <div class="card p-3 m-3 col-11" *ngFor="let me of myEvents;  "
+                                    [class.toggled]="classToggled">
+                                    <div class="container m-1 p-1">
+                                        <div class="row">
+                                            <div class="col-2">
+                                                <img class="photo_event" src="{{me.sportEvent.imageSport.nameImage}}"
+                                                    alt="">
+                                            </div>
+                                            <div class="col-5">
+                                                <h1 class="title-event">{{me.titleEvent}} <h4>{{me.dateStart | date: 'd
+                                                        MMM
+                                                        y '}}</h4>
+                                                </h1>
+                                            </div>
+                                            <div class="col-3">
+                                                <h4
+                                                    *ngIf="(me.dateStart | date: 'd MMM y ') == (dateNow | date: 'd MMM y ')">
+                                                    Aujourd'hui</h4>
+                                                <h4 *ngIf="me.pastDate"> Fini</h4>
+                                                <h4 *ngIf="!me.pastDate"> A venir</h4>
+                                            </div>
+                                            <div class="col-2">
+                                                <button mat-icon-button mat-icon-button
+                                                    (click)="me.visible =!me.visible">
+                                                    <mat-icon style=" font-size: 0.73em;" svgIcon="information"
+                                                        aria-hidden="false"></mat-icon>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="row" *ngIf="me.visible">
+                                                <div class="col-5">
+                                                    <b>Description : </b>
+                                                    <p>{{me.descriptionEvent}}</p>
+                                                    <div class="row">
+                                                        <b>Prix : </b>
+                                                        <p>{{me.priceEvent}} €</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-5">
+
+                                                    <div class="container">
+                                                        <b>Date : </b>
+                                                        <div class="row">
+                                                            <p>Début : {{me.dateStart | date: 'd MMM y H:mm'}}</p>
+                                                        </div>
+                                                        <div class="row">
+                                                            <p>Fin : {{me.dateEnd | date: 'd MMM y H:mm'}}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-2">
+                                                    <button *ngIf="!me.pastDate" (click)="removeUserFromEvent(me)"
+                                                        style="width : 50%; font-size: 50%;" id="feedbtn" mat-button>Se
+                                                        désister</button>
+                                                    <button *ngIf="me.pastDate" (click)="removeUserFromEvent(me)"
+                                                        style="width : 50%; font-size: 50%;" id="feedbtn"
+                                                        mat-button>Supprimer</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div *ngIf="friends.length !=0">
+                                <h4>Les événements de mes amis <i (click)="searchFriendEvent()"
+                                        class="fa fa-search"></i>
+                                </h4>
+                                <div class="container" *ngIf="visibleFriendEvent">
+                                    <div id="search-card" [class.toggled]="classToggled"
+                                        style="background-color: transparent;">
+                                        <div id="content">
+                                            <form EventF="ngForm" (ngSubmit)="filterFriendsEvent(EventF.value)">
+                                                <div class="input-group">
+                                                    <input ngModel="" #EventF name="EventF" type='text' id='search'
+                                                        class="form-control search-form" placeholder="Rechercher...">
+                                                    <span class="input-group-btn" style="width:39px">
+                                                        <button id="search-this" type="button"
+                                                            class="pull-right btn search-btn">
+                                                            <i class="fa fa-search"></i>
+                                                        </button>
+                                                    </span>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div *ngIf="eventsFriends.length==0">
+                                    <div class="card p-3 m-3 col-11" [class.toggled]="classToggled">
+                                        <p>Aucun évènement</p>
+                                    </div>
+                                </div>
+                                <div class="card p-3 m-3 col-11" *ngFor="let ef of eventsFriends"
+                                    [class.toggled]="classToggled">
+                                    <div class="container m-1 p-1">
+                                        <div class="row">
+                                            <div class="col-2">
+                                                <img class="photo_event" src="{{ef.sportEvent.imageSport.nameImage}}"
+                                                    alt="">
+                                            </div>
+                                            <div class="col-5">
+                                                <h1 class="title-event">{{ef.titleEvent}} <h4>{{ef.dateStart | date: 'd
+                                                        MMM
+                                                        y '}}</h4>
+                                                </h1>
+                                            </div>
+                                            <div class="col-3">
+                                                <h4
+                                                    *ngIf="(ef.dateStart | date: 'd MMM y ') == (dateNow | date: 'd MMM y ')">
+                                                    Aujourd'hui</h4>
+                                                <h4 *ngIf="ef.pastDate"> Fini</h4>
+                                                <h4 *ngIf="!ef.pastDate"> A venir</h4>
+                                            </div>
+                                            <div class="col-2">
+                                                <button mat-icon-button mat-icon-button
+                                                    (click)="ef.visible =!ef.visible">
+                                                    <mat-icon style=" font-size: 0.73em;" svgIcon="information"
+                                                        aria-hidden="false"></mat-icon>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="row" *ngIf="ef.visible">
+                                            <div class="col-4">
+                                                <b>Description : </b>
+                                                <p>{{ef.descriptionEvent}}</p>
+                                                <div class="row">
+                                                    <b>Prix : </b>
+                                                    <p>{{ef.priceEvent}} €</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-4">
+                                                <b>Participants : </b>
+                                                <div *ngFor="let p of ef.participants">
+                                                    <p>{{p.loginUser}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-4">
+
+                                                <div class="container">
+                                                    <b>Date : </b>
+                                                    <div class="row">
+                                                        <p>Début : {{ef.dateStart | date: 'd MMM y H:mm'}}</p>
+                                                    </div>
+                                                    <div class="row">
+                                                        <p>Fin : {{ef.dateEnd | date: 'd MMM y H:mm'}}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </div>
+            </ul>
+        </div>
+
+        <div class="col-3 p-4">
+            <div id="card_next_events" class="card p-0 m-0" [class.toggled]="classToggled">
+                <div class="card-header">
+                    <h3 class="text-center">Prochains évènements</h3>
+                </div>
+                <div class="p-3 " *ngIf="events.length ==0">
+                    <p>Aucun évènement à venir</p>
+                </div>
+                <div class="anyClass" *ngIf="events.length !=0">
+                    <div id="next_event" class="card p-3 m-3" *ngFor="let e of events" [class.toggled]="classToggled">
+                        <div class="row">
+                            <div class="col-8">
+                                <h3 class="text-center">{{e.titleEvent}}</h3>
+                            </div>
+                            <div class="col-4">
+                                <button (click)="goToEvent()" style="width : 50%; font-size: 50%;" id="feedbtn"
+                                    mat-button>Information</button>
+                            </div>
+                        </div>
+                        <div *ngFor="let id of e.participants">
+                            <p *ngIf="id.idUser == authService.getUserConnect().idUser" style="font-style: italic;">
+                                Inscrit
+                                <i class="fas fa-check"></i>
+                            </p>
+                        </div>
+                        <p>Début : {{e.dateStart | date: 'd MMM y H:mm'}} </p>
+                        <p>Fin : {{e.dateEnd | date: 'd MMM y H:mm'}}</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

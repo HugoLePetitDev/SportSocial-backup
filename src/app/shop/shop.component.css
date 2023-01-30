@@ -1,0 +1,183 @@
+
+
+.alignement {
+    text-align: center;
+}
+
+
+.couleur {
+    background-color: rgb(226, 224, 224);
+}
+
+#page {
+    min-height: 630px;
+}
+
+/* CSS de la bare de recherche
+*/
+
+.well {
+    background-color: #ffffee
+}
+
+
+.search-form {
+    border-radius: 30px 0 0 30px;
+    margin: 5px;
+}
+
+.input-group {
+    width: 90%;
+}
+
+input-group-btn {
+    max-width: 38px;
+}
+
+#search {
+    border: 1px;
+    background-color: #FCECDD;
+}
+
+#search-this {
+    background-color: #FFC288;
+}
+
+.search-btn {
+    cursor: pointer;
+    border-radius: 0 30px 30px 0;
+    color: rgb(255, 255, 255);
+
+}
+
+
+
+/* Style images */
+img {
+    float: left;
+    max-width: 100px;
+    width: 100%;
+    margin-right: 20px;
+    border-radius: 50%;
+}
+
+/* CSS du scroll */
+.anyClass {
+    height: auto;
+    overflow-y: scroll;
+}
+
+.btnPrincipal {
+    background-color: #FFC288 !important;
+}
+
+.card-header {
+    background-color: #FCECDD;
+    color: black;
+}
+
+#header {
+    margin-bottom: 30px;
+}
+
+#valider {
+    background-color: #a8ff88 !important;
+}
+
+#feedbtn{
+    background-color: #FFC288 ;
+    color: rgb(0, 0, 0);
+    height: 100px;
+    width: 150px;
+  }
+  
+  #feedbtn-active{
+    background-color: #643f1d ;
+    color: rgb(0, 0, 0);
+  }
+
+  #feedbtn-true{
+    background-color: #b27c49 ;
+    color: rgb(0, 0, 0);
+    height: 100px;
+    width: 150px;
+  }
+  
+  #feedbtn-true-active{
+    background-color: #643f1d ;
+    color: rgb(0, 0, 0);
+  }
+
+  #card_achat {
+    margin: 25px !important;
+    border: none;
+}
+
+#card_coach {
+  height: 600px;
+  min-height: auto;
+  background-color: transparent !important;
+}
+
+/* Dark Mode CSS */
+
+.toggled {
+    color: rgb(255, 255, 255);
+    background: rgb(42, 42, 42) ;
+  }
+  
+  .toggled .card-header {
+    background-color: rgb(136, 142, 183);
+    color: black;
+  }
+  
+  
+  .toggled #search {
+    border: 1px;
+    background-color: rgb(136, 142, 183);
+    color: white;
+  }
+  
+  .toggled #search-this {
+    cursor: pointer;
+    border-radius: 0 30px 30px 0;
+    background-color: rgb(87, 90, 159);
+    color: rgb(255, 255, 255);
+  
+  }
+  
+  .toggled .btnPrincipal {
+    background-color: #3f4a6e !important;
+  }
+
+  .toggled body {
+    min-height: 100vh;
+    height: 100vh;
+    height: 100%;
+  }
+
+  .toggled .input{
+    color: white;
+  }
+
+  .toggled #feedbtn{
+    background-color: rgb(87, 90, 159)!important;
+    color: white;
+  }
+
+  
+  .toggled #feedbtn-active{
+    background-color: rgb(56, 57, 97)!important;
+    color: white;
+  }
+
+  .toggled #feedbtn-true{
+    background-color: rgb(53, 55, 123)!important;
+    color: white;
+  }
+
+  
+  .toggled #feedbtn-true-active{
+    background-color: rgb(56, 57, 97)!important;
+    color: white;
+  }

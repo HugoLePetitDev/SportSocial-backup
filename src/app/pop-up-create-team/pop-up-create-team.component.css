@@ -1,0 +1,13 @@
+
+.popup_event {
+    width: 500px;
+}
+
+.box {
+    width: 180px;
+    height: 30px;
+    font-size: 15px;
+    color: #000000;
+    background-color: #FFC288;
+    border-radius: 5px;
+}

@@ -1,0 +1,11 @@
+.btnPrincipal {
+    background-color: #FFC288 !important;
+}
+
+
+/* CSS darkmode */ 
+
+.toggled .btnPrincipal {
+    background-color: #3f4a6e !important;
+    color: white !important;
+  }

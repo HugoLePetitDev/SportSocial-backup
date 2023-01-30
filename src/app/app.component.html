@@ -1,0 +1,72 @@
+<body [class.toggled]="classToggled">
+
+  <div class="back">
+    <div class="text-center" *ngIf="authService.isConnected()">
+      <ul [class.toggled]="classToggled" class="nav navbar nav-fill w-100 z-depth-2">
+        <li class="nav-item" style="width: 10%;">
+          <button mat-button [matMenuTriggerFor]="menu" class="nav-link white-text " style="width : 250px"><i
+              class="fas fa-bars"></i>Menu</button>
+          <mat-menu #menu="matMenu" style="background-color: white;">
+            <button style="background-color: white;" mat-menu-item (click)="goToHome()"
+              routerLinkActive="menu-active"><i class="fas fa-home" style="margin-right: 10px;"></i>Accueil</button>
+            <button style="background-color: white;" mat-menu-item (click)="goToSchedule()"
+              routerLinkActive="menu-active"><i class="fas fa-calendar" style="margin-right: 10px;"></i>Planning</button>
+            <button style="background-color: white;" mat-menu-item (click)="goToFriend()"
+              routerLinkActive="menu-active"><mat-icon style=" font-size: 0.73em;" svgIcon="friend"
+              aria-hidden="false"></mat-icon>Amis</button>
+            <button style="background-color: white;" mat-menu-item (click)="goToClub()"
+              routerLinkActive="menu-active"><i class="fas fa-plus" style="margin-right: 10px;"></i>Club</button>
+            <button style="background-color: white;" mat-menu-item (click)="goToEvent()"
+              routerLinkActive="menu-active"><mat-icon style=" font-size: 0.73em;" svgIcon="event"
+              aria-hidden="false"></mat-icon>Evenement</button>
+            <button style="background-color:  white;" mat-menu-item [matMenuTriggerFor]="shop" 
+              routerLinkActive="menu-active"><mat-icon style=" font-size: 0.73em;" svgIcon="shop"
+              aria-hidden="false"></mat-icon>Boutique</button>
+            <button style="background-color: white;" mat-menu-item (click)="goToMap()"
+              routerLinkActive="menu-active"><i class="fas fa-map" style="margin-right: 10px;"></i>Carte</button>
+          </mat-menu>
+          <mat-menu #shop="matMenu" style="background-color: white;">
+            <button style="background-color:  white;" mat-menu-item  (click)="goToShopAvatar()"
+            routerLinkActive="menu-active"><i class="fas fa-medal" style="margin-right: 10px;"></i>Avatar</button>
+            <button style="background-color:  white;" mat-menu-item (click)="goToShopCoach()"
+            routerLinkActive="menu-active"><i class="fas fa-user" style="margin-right: 10px;"></i>Coach</button>
+            <button style="background-color:  white;" mat-menu-item (click)="goToShopTokens()"
+            routerLinkActive="menu-active"><i class="fas fa-euro-sign" style="margin-right: 10px;"></i>Tokens</button>
+          </mat-menu>
+        </li>
+        <li style="width: 30%;">
+        </li>
+        <li style="width: 10%;">
+          <a class="white-text " routerLinkActive="menu-active" routerLink='home'>SportSocial</a>
+        </li>
+        <li style="width: 30%;">
+        </li>
+        <li class="nav-item" style="width: 10%;">
+          <a routerLinkActive="menu-active" class="nav-link white-text ">
+            <button mat-button [matMenuTriggerFor]="profil" class="nav-link white-text " style="width : 250px  "><img
+                src="{{userInfo.imageUser.nameImage}}" class="rounded-circle" height="32" alt=""
+                loading="lazy" /></button>
+            <mat-menu #profil="matMenu" style="background-color: white;">
+              <button style="background-color: white;" mat-menu-item (click)="goToProfil()"
+                routerLinkActive="menu-active">Voir son profil</button>
+              <button *ngIf="!dark" style="background-color: white;" mat-menu-item (click)="darkMode()"
+                (click)="darkTheme()">
+                <i class="fas fa-moon" style="margin-right: 10px;"> </i>Dark theme</button>
+              <button *ngIf="dark" style="background-color: white;" mat-menu-item (click)="darkMode()"
+                (click)="darkTheme()">
+                <i class="fas fa-sun" style="margin-right: 10px;"> </i>Light theme</button>
+              <button style="background-color: white;" mat-menu-item (click)="authService.logout()">
+                <i class="fas fa-power-off" style="margin-right: 10px;"></i>Déconnexion</button>
+            </mat-menu>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+
+
+
+  <router-outlet></router-outlet>
+
+</body>

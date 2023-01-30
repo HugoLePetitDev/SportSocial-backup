@@ -1,0 +1,147 @@
+<div class="container-fluid ">
+    <div class="row">
+        <div class="col-3 p-4 vh-900">
+            <div id="card_clubs" class="card p-0 m-0" [class.toggled]="classToggled">
+                <div class="card-header">
+                    <p class="text-center">Mes clubs</p>
+                </div>
+                <div class="anyClass">
+                    <div class="card p-3 m-2" id="card_style" *ngFor="let c of myClubs" [class.toggled]="classToggled">
+                        <div class="row">
+                            <div class="col-9">
+                                <button class="butInvisible" type="submit" (click)="openClubPage(c)">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <img class="photo_club" src="{{c.imageClub.nameImage}}" style="width: 100%"
+                                                alt="">
+                                        </div>
+                                        <div class="col-7" [class.toggled]="classToggled">
+                                            <h4>{{c.titleClub}}</h4>
+                                        </div>
+                                    </div>
+
+                                </button>
+                            </div>
+                            <div class="col-1">
+                                <button mat-icon-button mat-icon-button [matMenuTriggerFor]="menu" #menuTrigger>
+                                    <mat-icon>more_vert</mat-icon>
+                                </button>
+                                <mat-menu #menu="matMenu" xPosition="before">
+                                    <button mat-menu-item (click)="openDialog(c)">Quitter le club</button>
+                                </mat-menu>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-9 p-4">
+            <div class="row">
+                <div class="col-3 p-4" [class.toggled]="classToggled" style="background-color: transparent;">
+                    <a [class.toggled]="classToggled" id="btn_dropdown" mat-raised-button (click)="openNewClubModal()">
+                        Créer un club
+                        <mat-icon>add</mat-icon>
+                    </a>
+                </div>
+                <div *ngIf="visibleSearch" class="col-5 p-4" [class.toggled]="classToggled"
+                    style="background-color: transparent;">
+                    <div class="container">
+                        <div id="content">
+                            <form #infosClub="ngForm" (ngSubmit)="filterClub(Club.value)">
+                                <div class="input-group">
+                                    <input ngModel="" #Club name="Club" type='text' id='search'
+                                        class="form-control search-form" placeholder="Recherche un club...">
+                                    <span class="input-group-btn" style="width:39px">
+                                        <button id="search-this" type="button" class="pull-right btn search-btn">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+                <div *ngIf="visibleFilter" class="col-4 p-4" [class.toggled]="classToggled"
+                    style="background-color: transparent;">
+                    <form #choixSport="ngForm" (ngSubmit)="filterClubBySport(choixSport.value)">
+                        <div class="row">
+                            <div class="text-center col-7">
+                                <mat-form-field>
+                                    <mat-label>
+                                        Filtrer par sport :
+                                    </mat-label>
+                                    <mat-select class="" name="sportEvent" ngModel="">
+                                        <mat-option>-Effacer la selection-</mat-option>
+                                        <mat-option [value]="s" *ngFor="let s of sports">
+                                            {{s.nameSport}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-5">
+                                <button style="left : 15px" mat-icon-button mat-icon-button>
+                                    <i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-7" *ngIf="!visibleFilter && !visibleSearch">
+                </div>
+                <div class="col-2" *ngIf="!visibleFilter && visibleSearch">
+                </div>
+                <div class="col-3" *ngIf="visibleFilter && !visibleSearch">
+                </div>
+                <div class="col-2">
+                    <button mat-button [matMenuTriggerFor]="menu" class="nav-link white-text "
+                        style="width : auto; margin-left: 40px;"><i class="fas fa-bars"></i>Filtrer</button>
+                    <mat-menu #menu="matMenu" style="background-color: white;">
+                        <button style="background-color: white;" mat-menu-item (click)="visibleSearchClub()"
+                            routerLinkActive="menu-active">Rechercher un club</button>
+                        <button style="background-color: white;" mat-menu-item (click)="visibleFilterClub()"
+                            routerLinkActive="menu-active">Filtrer par sport</button>
+                    </mat-menu>
+                </div>
+            </div>
+
+            <div class="md-form">
+                <div class="row">
+                    <div class="col-4 p-4" *ngFor="let c of otherClubs" [class.toggled]="classToggled"
+                        style="background-color: transparent;">
+                        <div class="card p-3 m-3" id="card_otherClub" [class.toggled]="classToggled">
+                            <div class="row m-2">
+                                <div class="col-4" *ngIf="c.imageClub != null">
+                                    <img class="photo_club" src="{{c.imageClub.nameImage}}" style="width: 60%" alt="">
+                                </div>
+                                <div class="col-8">
+                                    <h2 class=" nomClub">{{c.titleClub}}</h2>
+                                </div>
+                            </div>
+                            <b style="margin-top: 20px;">Description</b>
+                            <p id="description">{{c.descriptionClub}}</p>
+                            <b style="margin-top: 20px;">Amis membres du club</b>
+                            <div *ngFor="let cf of listClubFriend">
+                                <div *ngIf="cf.length != 0 ">
+                                    <div id="friend_club" *ngFor="let f of cf.friend">
+                                        <p *ngIf="cf.idClub == c.idClub" >{{f.loginUser}}</p>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <button mat-button [matMenuTriggerFor]="club" class="nav-link white-text "
+                                    style="width : auto"><i class="fas fa-plus"></i></button>
+                                <mat-menu #club="matMenu" style="background-color: white;">
+                                    <button style="background-color: white;" mat-menu-item (click)="joinClub(c)"
+                                        routerLinkActive="menu-active">Rejoindre</button>
+                                    <button style="background-color: white;" mat-menu-item (click)="goToFriends()"
+                                        routerLinkActive="menu-active">Contacter</button>
+                                </mat-menu>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

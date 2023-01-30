@@ -1,0 +1,40 @@
+<form #infosClub="ngForm" (ngSubmit)="createClub(infosClub.value)">
+    <div class="card p-3">
+        <div class="md-form">
+            <label>Nom du club</label>
+            <input name="titleClub" ngModel="" type="text" class="form-control">
+        </div>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Description du club</mat-label>
+            <textarea matInput name="descriptionClub" ngModel=""></textarea>
+        </mat-form-field>
+
+        <div class="md-form">
+
+            <mat-form-field class="example-full-width">
+                <mat-label>
+                    Sport :
+                </mat-label>
+                <mat-select class="" name="sportClub" ngModel="" required>
+                    <mat-option [value]="s" *ngFor="let s of sports">
+                        {{s.nameSport}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div [class.toggled]="classToggled" >
+            <div mat-dialog-actions style="background-color: white">
+                <button [disabled]="!infosClub.form.valid" mat-button type="submit" class="btnPrincipal "
+                (click)=" onNoClick()" style="background-color: white">Créer un club</button>
+            </div>
+        </div>
+        <div [class.toggled]="classToggled" >
+            <div mat-dialog-actions style="background-color: white">
+                <button class="btnPrincipal" mat-button (click)="onNoClick()"
+                style="background-color: white">Annuler</button>
+            </div>
+        </div>
+
+    </div>
+</form>

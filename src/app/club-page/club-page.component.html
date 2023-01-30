@@ -1,0 +1,410 @@
+<div class="container-fluid">
+    <div class="row">
+        <div id="gauche" class="col-3 p-4">
+            <div id="card" class="card p-0 m-0" [class.toggled]="classToggled" style="background-color: transparent; box-shadow: none;">
+                <div class="title_club">
+                    <p class="text-center">{{club.titleClub}}</p>
+                </div>
+                <div class="mx-auto text-center p-2" >
+                    <div class="col-12">
+                        <img  class="photo_club" src="{{club.imageClub.nameImage}}" style="width: 100%">
+                    </div>
+                </div>
+            </div>
+            <div id="card" class="card p-0 m-0" [class.toggled]="classToggled">
+                <div class="card-header">
+                    <p class="text-center">A propos du club</p>
+                </div>
+                <div class="m-2">
+                    <p>{{club.descriptionClub}}</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="milieu" class="col-5 p-4" style="background-color : transparent !important">
+            <div *ngIf="feed == null" [class.toggled]="classToggled" style="background-color : transparent !important">
+
+            </div>
+
+            <div *ngIf="feed != null" [class.toggled]="classToggled" style="background-color : transparent !important;">
+                <div class="container" *ngFor="let f of feed">
+                    <div class="card p-3" [class.toggled]="classToggled" style="margin :10px">
+                        <div class="row">
+                            <div class="col-2">
+                                <img class="photo_conversation" src="{{f.createurPost.imageUser.nameImage}}"
+                                    style="width: 100%">
+                            </div>
+                            <div class="col-10">
+                                <div class="container">
+                                    <div class="row">
+                                        <p>{{f.createurPost.loginUser}}</p>
+                                    </div>
+                                    <div class="row">
+                                        <p>{{f.dateCreationPost |date}}</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row contentPost">
+                            <div>
+                                <p id="just-line-break">{{f.contentPost}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <img *ngIf="f.imagePost != null" src="{{f.imagePost.nameImage}}" style="width: 100%">
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <div *ngFor=" let l of listLikePosts">
+                                    <div *ngIf="l.idPost == f.idPost && !l.boolLike" [class.toggled]="classToggled">
+                                        <div class="text-center">
+                                            <button (click)="likePost(f.idPost)" class="butInvisible">
+                                                <div class="numberDislike">{{f.numberLikes}}</div>
+                                                <mat-icon svgIcon="unliked" class="imageDislike"
+                                                    aria-hidden="false"></mat-icon>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="l.idPost == f.idPost && l.boolLike " [class.toggled]="classToggled">
+                                        <div class="text-center">
+                                            <button (click)="unlikePost(f.idPost)" class="butInvisible">
+                                                <div class="numberLike">{{f.numberLikes}}</div>
+                                                <mat-icon svgIcon="liked" class="imageLike"
+                                                    aria-hidden="false"></mat-icon>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4" [class.toggled]="classToggled">
+                                <div class="text-center">
+                                    <button *ngIf="f.numberComments!=0" (click)="listComments(f.idPost)"
+                                        class="butInvisible">
+                                        Voir les {{f.numberComments}} commentaires</button>
+                                    <button *ngIf="f.numberComments==0" class="butInvisible"> Voir les
+                                        {{f.numberComments}} commentaires</button>
+                                </div>
+
+                            </div>
+                            <div class="col-4" [class.toggled]="classToggled">
+                                <div class="text-center">
+                                    <button class="butInvisible">Partager</button>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="row" *ngIf="f.idPost == idPostCom">
+                            <div class="container" *ngFor="let c of comments" [class.toggled]="classToggled">
+                                <div class="comment" [class.toggled]="classToggled">
+                                    <div class="row">
+                                        <div class="col-1">
+                                            <img class="photo_conversation"
+                                                src="{{c.createurComment.imageUser.nameImage}}" style="width: 100%">
+                                        </div>
+                                        <div class="col-11">
+                                            <p>{{c.createurComment.loginUser}}</p>
+                                            <p id="just-line-break"> {{c.contentComment}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <div *ngFor=" let lc of listLikeComment">
+                                                <div *ngIf="lc.idComment == c.idComment && !lc.boolLike"
+                                                    [class.toggled]="classToggled">
+                                                    <div class="text-center">
+                                                        <button (click)="likeComment(c.idComment)" class="butInvisible">
+                                                            <div class="numberDislike">{{c.numberLikes}}</div>
+                                                            <mat-icon svgIcon="unliked" class="imageDislike"
+                                                                aria-hidden="false"></mat-icon>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div *ngIf="lc.idComment == c.idComment && lc.boolLike "
+                                                    [class.toggled]="classToggled">
+                                                    <div class="text-center">
+                                                        <button (click)="unlikeComment(c.idComment)"
+                                                            class="butInvisible">
+                                                            <div class="numberLike">{{c.numberLikes}}</div>
+                                                            <mat-icon svgIcon="liked" class="imageLike"
+                                                                aria-hidden="false"></mat-icon>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-4" [class.toggled]="classToggled">
+                                            <div class="text-center">
+                                                <button *ngIf="c.numberComments !=0"
+                                                    (click)="listCommentsInComment(c.idComment)"
+                                                    class="butInvisible">Voir les {{c.numberComments}}
+                                                    réponses</button>
+                                                <button *ngIf="c.numberComments ==0" class="butInvisible">Voir les
+                                                    {{c.numberComments}}
+                                                    réponses</button>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="row">
+                                                <p>{{c.dateCreationComment |date}}</p>
+                                            </div>
+                                        </div>
+                                        <!-- Zone de saisie de messages -->
+
+                                        <div id="zone_saisie_message" class="card p-1" [class.toggled]="classToggled">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <form #comment="ngForm"
+                                                        (ngSubmit)="commentComment(comment.value.contentComment, c.idComment)">
+                                                        <div class="col-10" [class.toggled]="classToggled">
+                                                            <input id="message" class="form-control"
+                                                                [class.toggled]="classToggled" name="contentComment"
+                                                                ngModel="" type="text" class="form-control"
+                                                                placeholder="..." style="width: 600px; margin: 5px;"
+                                                                required class="form-control">
+                                                        </div>
+                                                        <div class="col-2">
+                                                            <button [disabled]="!comment.form.valid" type="submit"
+                                                                class="button-30 " style="font-size: 60%;">Envoyer <i
+                                                                    class="fas fa-envelope"
+                                                                    style="color: rgb(0, 0, 0);"></i></button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" *ngIf="c.idComment == idComCom">
+                                        <div class="container" *ngFor="let d of commmentsComment">
+                                            <div class="commentInComment" [class.toggled]="classToggled">
+                                                <div class="row">
+                                                    <div class="col-1">
+                                                        <img class="photo_conversation"
+                                                            src="{{d.createurComment.imageUser.nameImage}}"
+                                                            style="width: 100%">
+                                                    </div>
+                                                    <div class="col-11">
+                                                        <p>{{d.createurComment.loginUser}}</p>
+                                                        <p id="just-line-break">{{d.contentComment}}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <div *ngFor=" let lcc of listLikeCommentComment">
+                                                            <div *ngIf="lcc.idComment == d.idComment && !lcc.boolLike"
+                                                                [class.toggled]="classToggled">
+                                                                <div class="text-center">
+                                                                    <button (click)="likeComment(d.idComment)"
+                                                                        class="butInvisible">
+                                                                        <div class="numberDislike">{{d.numberLikes}}
+                                                                        </div>
+                                                                        <mat-icon svgIcon="unliked" class="imageDislike"
+                                                                            aria-hidden="false"></mat-icon>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                            <div *ngIf="lcc.idComment == d.idComment && lcc.boolLike "
+                                                                [class.toggled]="classToggled">
+                                                                <div class="text-center">
+                                                                    <button (click)="unlikeComment(d.idComment)"
+                                                                        class="butInvisible">
+                                                                        <div class="numberLike">{{d.numberLikes}}</div>
+                                                                        <mat-icon svgIcon="liked" class="imageLike"
+                                                                            aria-hidden="false"></mat-icon>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <div class="text-center">
+                                                            <button *ngIf="d.numberComments != 0"
+                                                                (click)="listCommentsInComment(d.idComment)"
+                                                                class="butInvisible"> Répondre</button>
+                                                            <button *ngIf="d.numberComments == 0"
+                                                                class="butInvisible">Répondre </button>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <p>{{d.dateCreationComment |date}}</p>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <!-- Zone de saisie de messages -->
+
+                        <div id="zone_saisie_message" class="card p-1" [class.toggled]="classToggled">
+                            <div class="container">
+                                <div class="row">
+                                    <form #comment="ngForm"
+                                        (ngSubmit)="postComment(comment.value.contentComment, f.idPost)">
+                                        <div class="col-10" [class.toggled]="classToggled">
+                                            <input id="message" class="form-control" [class.toggled]="classToggled"
+                                                name="contentComment" ngModel="" type="text" class="form-control"
+                                                placeholder="..." style="width: 600px; margin: 5px;" required
+                                                class="form-control">
+                                        </div>
+                                        <div class="col-2">
+                                            <button [disabled]="!comment.form.valid" type="submit" class="button-30 "
+                                                style="font-size: 60%;">Envoyer <i class="fas fa-envelope"
+                                                    style="color: rgb(0, 0, 0);"></i></button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="milieu2" class="col-1 p-4">
+            <div class="col-3 p-4" [class.toggled]="classToggled" style="background-color : transparent !important">
+                <a [class.toggled]="classToggled" id="feedbtn" mat-raised-button
+                    (click)="openNewPostModal()">
+                    Créer un post
+                </a>
+            </div>
+        </div>
+
+        <div id="droite" class="col-3 p-4">
+            <div id="card" class="card p-0 m-0 " [class.toggled]="classToggled">
+                <div class=card-header>
+                    <p class="text-center">Membres du groupe</p>
+                </div>
+                <div>
+                    <div class="container" [class.toggled]="classToggled">
+                        <div id="content">
+                            <form #infosTeam="ngForm">
+                                <div class="input-group">
+                                    <input ngModel="" #TeamS name="TeamS" type='text' id='search'
+                                        class="form-control search-form" placeholder="Rechercher...">
+                                    <span class="input-group-btn" style="width:39px">
+                                        <button id="search-this" type="button" class="pull-right btn search-btn">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+
+                    <!-- card ami-->
+                    <div class="anyClass" [class.toggled]="classToggled">
+                        <div class="card p-1 m-1" id="card_style" *ngFor="let f of myFriends" [class.toggled]="classToggled">
+                            <div class="container">
+
+                                <div class="row">
+                                    <!-- photo de profil -->
+                                    <div class="col-4">
+                                        <img class="photo_conversation" src="{{f.imageUser.nameImage}}"
+                                            style="width: 100%">
+                                    </div>
+                                    <!-- nom user -->
+                                    <div class="col-6">
+                                        <b> {{f.loginUser}} <p
+                                            style="font-style: italic; font-weight: lighter !important; font-size: 50%;">
+                                            <i class="fas fa-circle"
+                                                style="color: rgb(171, 174, 171); size: 50%;"></i> Hors ligne
+                                        </p></b>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- card ami en attente d'ajout-->
+                    <div class="anyClass" [class.toggled]="classToggled">
+                        <div class="card p-1 m-1" id="card_style" *ngFor="let f of askedFriends" [class.toggled]="classToggled">
+                            <div class="container">
+
+                                <div class="row">
+                                    <!-- photo de profil -->
+                                    <div class="col-4">
+                                        <img class="photo_conversation" src="{{f.imageUser.nameImage}}"
+                                            style="width: 100%">
+                                    </div>
+                                    <!-- nom user -->
+                                    <div class="col-6">
+                                        <b> {{f.loginUser}} <p
+                                            style="font-style: italic; font-weight: lighter !important; font-size: 50%;">
+                                            <i class="fas fa-circle"
+                                                style="color: rgb(171, 174, 171); size: 50%;"></i> Hors ligne
+                                        </p></b>
+                                    </div>
+                                    <div class="col-2">
+                                        <button (click)="goToFriends()" type="submit" class="butInvisible"><mat-icon
+                                                svgIcon="wait-friend" aria-hidden="false"></mat-icon>
+                                        </button>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <!-- card non ami-->
+                    <div class="anyClass" [class.toggled]="classToggled">
+                        <div class="card p-1 m-1" id="card_style" *ngFor="let f of nonFriends" [class.toggled]="classToggled">
+                            <div class="container">
+
+                                <div class="row">
+                                    <!-- photo de profil -->
+                                    <div class="col-4">
+                                        <img class="photo_conversation" src="{{f.imageUser.nameImage}}"
+                                            style="width: 100%">
+                                    </div>
+                                    <!-- nom user -->
+                                    <div class="col-6">
+                                        <b> {{f.loginUser}} <p
+                                            style="font-style: italic; font-weight: lighter !important; font-size: 50%;">
+                                            <i class="fas fa-circle"
+                                                style="color: rgb(171, 174, 171); size: 50%;"></i> Hors ligne
+                                        </p></b>
+                                    </div>
+                                    <div class="col-2">
+                                        <button (click)="addFriend(f)" type="submit" class="butInvisible"><mat-icon
+                                                svgIcon="add-friend" aria-hidden="false"></mat-icon>
+                                        </button>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

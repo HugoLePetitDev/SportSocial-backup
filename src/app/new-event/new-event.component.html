@@ -1,0 +1,60 @@
+<div class="container">
+    <div class="p-2 m-2 popup_event">
+        <div class="md-form">
+            <h2 class="text-center">Créez votre événement</h2>
+        </div>
+        <form #infosEvent="ngForm" (ngSubmit)="createEvent(infosEvent.value)">
+            <div class="md-form">
+                <input placeholder="Titre" name="titleEvent" ngModel="" type="text" class="form-control" required>
+            </div>
+            <div class="md-form">
+
+                <mat-form-field>
+                    <mat-label>
+                        Sport :
+                    </mat-label>
+                    <mat-select class="" name="sportEvent" ngModel="" required>
+                        <mat-option [value]="s" *ngFor="let s of sports">
+                            {{s.nameSport}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="md-form">
+                <input placeholder="Date de début" name="dateStart" ngModel="" type="datetime-local"
+                    class="form-control" required>
+            </div>
+            <div class="md-form">
+                <input placeholder="Date de fin" name="dateEnd" ngModel="" type="datetime-local" class="form-control"
+                    required>
+            </div>
+            <div class="md-form">
+                <input placeholder="Description" name="descriptionEvent" ngModel="" type="text" class="form-control"
+                    required>
+            </div>
+            <div class="md-form">
+                <input placeholder="Prix" name="priceEvent" ngModel="" type="number" class="form-control">
+            </div>
+            <div class="md-form">
+                <input placeholder="Points" name="score" ngModel="" type="number" class="form-control"
+                    required>
+            </div>
+            <div class="md-form">
+                <div class="row">
+                    <div class="col-6">
+                        <span class="input-group-btn" style="width:39px">
+                            <button [disabled]="!infosEvent.form.valid" type="submit"
+                                class="btn btn-secondary btn-block btn-sm" (click)=" onNoClick()">Creer
+                                l'événement</button>
+                        </span>
+                    </div>
+                    <div class="col-6 text-center">
+                        <button mat-button (click)="onNoClick()">Annuler</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!---->

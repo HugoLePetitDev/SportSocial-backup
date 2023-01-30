@@ -1,0 +1,80 @@
+<div [class.toggled]="classToggled">
+    <div class="row">
+        <div class="col-3 p-4">
+            <div id="card_user" class="card p-0 m-0">
+                <div id="loginUser" class="card-header">
+                    <h3 style="font-weight: bold" class="text-center">{{coach.loginUser}} </h3>
+                </div>
+                <div class="mx-auto text-center p-2">
+                    <img src="{{coach.imageUser.nameImage}}">
+                </div>
+            </div>
+            <div class="card p-0 m-0" id="card_data">
+                <div class="card-header">
+                    <h3 class="text-center">Données personnelles</h3>
+                </div>
+
+                <div class="md-form">
+                    <div class="p-3">
+                        <p>Nom : <b>{{coach.lastNameUser}} </b></p>
+                        <p>Prénom : <b>{{coach.firstNameUser}}</b></p>
+                        <p>Pseudo : <b>{{coach.loginUser}}</b></p>
+                    </div>
+
+
+
+                </div>
+
+
+            </div>
+        </div>
+        <div class="card col-9 p-0 m-0" id="card_data">
+            <div class="card-header p-3">
+                <h1 class="text-center">Profil de {{coach.loginUser}}</h1>
+            </div>
+            <div class="row p-3">
+                <strong>Disciplines </strong>
+                <div class="col-3" *ngFor="let i of imageSport">
+                    <img src="{{i.imageSport.nameImage}}" alt="">
+                    <p>{{i.nameSport}}</p>
+                </div>
+
+            </div>
+            <div class="row p-3">
+                    <strong>Score <i class="fas fa-crown" style="color: yellow;"></i></strong>
+                    <div>
+                        <div *ngFor="let s of allCoach">
+                            <div class="card p-0 m-0" id="card_data" style="width: auto;">
+                                <div class="card-header ">
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <p class="text-center">{{s.sport.nameSport}}</p>
+                                        </div>
+                                        <div class="col-2">
+                                            <i *ngIf="s.sport.nameSport == 'Football' " class="fas fa-futbol"></i>
+                                            <i *ngIf="s.sport.nameSport == 'Escalade' " class="fas fa-mountain"></i>
+                                            <mat-icon style=" font-size: 0.73em;" *ngIf="s.sport.nameSport == 'Rugby'"
+                                                svgIcon="rugby" aria-hidden="false"></mat-icon>
+                                            <mat-icon style=" font-size: 0.73em;"
+                                                *ngIf="s.sport.nameSport == 'Course à pied' " svgIcon="running"
+                                                aria-hidden="false"></mat-icon>
+                                            <mat-icon style=" font-size: 0.73em;" *ngIf="s.sport.nameSport == 'Natation' "
+                                                svgIcon="swim" aria-hidden="false"></mat-icon>
+                                            <mat-icon style=" font-size: 0.73em;" *ngIf="s.sport.nameSport == 'Basketball' "
+                                                svgIcon="basket" aria-hidden="false"></mat-icon>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p>Score : {{s.score}}</p>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 p-4">
+            
+        </div>
+    </div>
+</div>

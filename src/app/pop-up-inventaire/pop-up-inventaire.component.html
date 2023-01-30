@@ -1,0 +1,29 @@
+<div [class.toggled]="classToggled">
+    <div class="row">
+        <div class="col-12 p-4">
+            <div *ngIf="images.length!=0" style="height: 300px;">
+                <div class="card p-0 m-0" *ngFor="let i of images">
+                    <div class="row justify-content-center" style="height: auto;">
+                        <img class="photo_profil image-rond image-rond-bg" src="{{i.nameImage}}" alt="">
+                    </div>
+                        <button (click)="changePP(i.idImage)" type="submit"
+                            class="btn btnPrincipal btn-block btn-lg notNull">Choisir en photo de profil</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 p-4">
+
+            <div class="null p-0 m-0" *ngIf="images.length==1" style="height: 300px;">
+                <div class="row">
+                    <p>Vous possédez aucun avatar !</p>
+                </div>
+                <div class="row">
+                    <button class="btn btnPrincipal btn-sm" (click)="goToShop()">Aller dans à la boutique<i
+                            class="fas fa-shopping-cart"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+<form #infosUser="ngForm" (ngSubmit)="modifMdp(infosUser.value)">
+    <div class="card p-3">
+        <div class="md-form">
+            <label>Ancien mot de passe</label>
+            <input ngModel="" name="OldpasswordUser" type="password" class="form-control">
+            <!--     <div *ngIf="ancien != authService.getUserConnect().passwordUser">
+                <p> Le mot de passe ne correspond pas !</p>
+            </div>-->
+        </div>
+        <div class="md-form">
+            <label>Nouveau mot de passe</label>
+            <input name="passwordUser" ngModel="" type="password" class="form-control">
+        </div>
+        <div class="alert alert-danger text-center" *ngIf="msgErr != ''">
+            {{msgErr}}
+        </div>
+        <div [class.toggled]="classToggled" >
+            <div mat-dialog-actions style="background-color: white">
+                <button type=" submit" (click)="onNoClick()" class="btn btnPrincipal btn-block btn-sm ">Modifier le mot
+                    de passe</button>
+            </div>
+        </div>
+    </div>
+</form>

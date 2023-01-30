@@ -1,0 +1,78 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 p-4">
+            <div id="schedule" class="card p-3 m-3" [class.toggled]="classToggled">
+                <div class="md-form">
+                    <div class="row text-center" id="schedule" [class.toggled]="classToggled" >
+                        <h1>Calendrier</h1>
+                    </div>
+                    <div class="row">
+                        <div class="col-12" style="margin-top: 20px;" [class.toggled]="classToggled">
+                            <button id="feedbtn"  mat-button (click)="openNewActivity()">Ajouter une activité</button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row text-center" style="margin: 3px;">
+
+                    <div class="col-md-6">
+                        <div class="btn-group">
+                            <div id="feedbtn" class="btn btnPrincipal btn-block " mwlCalendarPreviousView [view]="view"
+                                [(viewDate)]="viewDate" style="height: 50px; font-size: 60%;">
+                                Précédent
+                            </div>
+                            <div id="feedbtn" class="btn btnPrincipal btn-block " mwlCalendarToday [(viewDate)]="viewDate"
+                                style="height: 50px; font-size: 60%;">
+                                Aujourd'hui
+                            </div>
+                            <div id="feedbtn" class="btn btnPrincipal btn-block " mwlCalendarNextView [view]="view"
+                                [(viewDate)]="viewDate" style="height: 50px;  font-size: 60%;">
+                                Suivant
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2" id="schedule" [class.toggled]="classToggled">
+                        <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="btn-group">
+                            <div id="feedbtn" class="btn btnPrincipal btn-block " (click)="setView(CalendarView.Month)"
+                                [class.active]="view === CalendarView.Month" style="height: 50px;  font-size: 60%;">
+                                Mois
+                            </div>
+                            <div id="feedbtn" class="btn btnPrincipal btn-block " (click)="setView(CalendarView.Week)"
+                                [class.active]="view === CalendarView.Week" style="height: 50px;  font-size: 60%;">
+                                Semaine
+                            </div>
+                            <div id="feedbtn" class="btn btnPrincipal btn-block " (click)="setView(CalendarView.Day)"
+                                [class.active]="view === CalendarView.Day" style="height: 50px;  font-size: 60%;">
+                                Jour
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div [ngSwitch]="view" [class.toggled]="classToggled" class="view">
+
+                    <mwl-calendar-month-view (dayClicked)="dayClicked($event.day)" *ngSwitchCase="CalendarView.Month"
+                        [viewDate]="viewDate" [events]="events" [class.toggled]="classToggled">
+                    </mwl-calendar-month-view>
+
+                    <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [viewDate]="viewDate" [events]="events" [class.toggled]="classToggled">
+                    </mwl-calendar-week-view>
+
+                    <mwl-calendar-day-view *ngSwitchCase="CalendarView.Day" [viewDate]="viewDate" [events]="events" [class.toggled]="classToggled">
+                    </mwl-calendar-day-view>
+
+                </div>
+
+                
+
+            </div>
+        </div>
+    </div>

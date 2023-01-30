@@ -1,0 +1,389 @@
+.photo_profil {
+    height: 60px;
+    width: 60px;
+    background-size: contain;
+    background-position: 50% 50%;
+    display: inline-block;
+    border: none;
+    -moz-border-radius: 75px;
+    -webkit-border-radius: 75px;
+    border-radius: 75px;
+}
+
+#add_friend_username {
+    text-align: center;
+    vertical-align: middle;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+#demande_amis {
+    height: 200 px;
+    max-height: 290px;
+    margin-bottom: 30px;
+    margin: 25px !important;
+    border: none;
+}
+
+#ajout_amis {
+    height: 550px;
+    max-height: 450px;
+    margin: 25px !important;
+    border: none;
+}
+
+/* CSS de la bare de recherche
+*/
+
+.well {
+    background-color: #ffffee
+}
+
+
+.search-form {
+    border-radius: 30px 0 0 30px;
+    margin: 5px;
+}
+
+.input-group {
+    width: 90%;
+}
+
+input-group-btn {
+    max-width: 38px;
+}
+
+#search {
+    border: 1px;
+    background-color: #FCECDD;
+}
+
+.search-btn {
+    cursor: pointer;
+    border-radius: 0 30px 30px 0;
+    background-color: #FFC288;
+    color: rgb(255, 255, 255);
+
+}
+
+
+/* CHAT */
+/* Chat containers */
+.lighter {
+    background-color: #FCECDD;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+    margin-right: 35px !important;
+    width: 94%;
+}
+
+/* Darker chat container */
+.darker {
+    background-color: #FFC288;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+    margin-left: 35px !important;
+    width: 94%;
+
+}
+
+/* Clear floats */
+.container::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Style images */
+.container img {
+    float: left;
+    max-width: 60px;
+    width: 100%;
+    margin-right: 20px;
+    border-radius: 50%;
+}
+
+/* Style the right image */
+.container img.right {
+    float: right;
+    margin-left: 20px;
+    margin-right: 0;
+}
+
+/* Style time text */
+.time-right {
+    float: right;
+    color: rgb(255, 255, 255);
+}
+
+/* Style time text */
+.time-left {
+    float: left;
+    color: rgb(255, 255, 255);
+}
+
+.photo_conversation {
+    height: 60px;
+    width: 60px;
+    background-size: contain;
+    background-position: 50% 50%;
+    display: inline-block;
+    border: none;
+    -moz-border-radius: 75px;
+    -webkit-border-radius: 75px;
+    border-radius: 75px;
+}
+
+#zone_saisie_message {
+    margin-top: 10px;
+}
+
+/* CSS zone de visalisation des amis */
+
+#card_amis {
+    min-height: 350px;
+    max-height: 450px;
+    margin: 25px !important;
+    border: none;
+}
+
+#card_teams {
+    min-height: auto;
+    max-height: 350px;
+    margin: 25px !important;
+    border: none;
+}
+
+
+/* CSS du scroll */
+.anyClass {
+    height: auto;
+    overflow-y: scroll;
+}
+
+table,
+th,
+td {
+    border: 1px solid black;
+    font-size: 85%;
+}
+
+
+.card-header {
+    background-color: #FCECDD;
+    border: none;
+    color: black;
+}
+
+
+.card-option {
+    background-color: #FCECDD;
+    border: none;
+    color: black;
+}
+
+#teammember {
+    background-color: #d0c4b8;
+    width: auto;
+}
+
+#option{
+    max-height: 225px;
+}
+
+.btnPrincipal {
+    background-color: #FFC288 !important;
+}
+
+.tourBtn {
+    margin-top: 1px;
+    font-size: 10%;
+}
+
+#btnadd {
+    margin: 3px;
+}
+
+#card_principal_messages {
+    height: 700px;
+    max-height: 700px;
+    margin: 25px !important;
+    border: none;
+
+}
+
+#card_empty_messages {
+    height: 770px;
+}
+
+#feedbtn{
+    background-color: #FFC288 ;
+    color: white;
+    margin: 5px;
+  }
+
+
+/* CSS */
+.button-30 {
+    align-items: center;
+    appearance: none;
+    background-color: #f1bb6b;
+    border-radius: 4px;
+    border-width: 0;
+    box-shadow: rgba(129, 114, 67, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #d9a653 0 -3px 0 inset;
+    box-sizing: border-box;
+    color: #68635c;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: "JetBrains Mono", monospace;
+    height: 24px;
+    justify-content: center;
+    line-height: 1;
+    list-style: none;
+    overflow: hidden;
+    padding-left: 16px;
+    padding-right: 16px;
+    position: relative;
+    text-align: left;
+    text-decoration: none;
+    transition: box-shadow .15s, transform .15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    will-change: box-shadow, transform;
+    font-size: 18px;
+    margin-top: 3px;
+}
+
+.button-30:focus {
+    box-shadow: #d4a16f 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #d9a653 0 -3px 0 inset;
+}
+
+.button-30:hover {
+    box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #d9a653 0 -3px 0 inset;
+    transform: translateY(-2px);
+}
+
+.button-30:active {
+    box-shadow: #D6D6E7 0 3px 7px inset;
+    transform: translateY(2px);
+}
+
+.tab, th {
+    border: none;
+}
+
+#quitter {
+    margin: 3px;
+    width: auto;
+
+}
+
+#last_message {
+    text-overflow: ellipsis !important; /* will make [...] at the end */
+    white-space: nowrap !important; /* paragraph to one line */
+    overflow: hidden !important; /* older browsers */
+}
+
+.conv_title {
+    text-overflow: ellipsis !important; /* will make [...] at the end */
+    white-space: nowrap !important; /* paragraph to one line */
+    overflow: hidden !important;   /* older browsers */
+    font-weight: bold;
+
+}
+
+#card_style{
+    box-shadow: none;
+    border-top: white !important;
+    border-left: white !important;
+    border-right: white !important;
+  }
+
+/* Dark Mode CSS */
+
+.toggled {
+    color: rgb(255, 255, 255);
+    background: rgb(42, 42, 42);
+}
+
+.toggled .card-header {
+    background-color: rgb(136, 142, 183);
+    border: none;
+    color: black;
+}
+
+.toggled .card-option {
+    background-color: rgb(136, 142, 183);
+    border: none;
+    color: black;
+}
+
+
+.toggled #search {
+    border: 1px;
+    background-color: rgb(136, 142, 183);
+    color: white;
+}
+
+.toggled #search-this {
+    cursor: pointer;
+    border-radius: 0 30px 30px 0;
+    background-color: rgb(87, 90, 159);
+    color: rgb(255, 255, 255);
+
+}
+
+.toggled .btnPrincipal {
+    background-color: #3f4a6e !important;
+}
+
+
+.toggled .button-30 {
+    background-color: #515981;
+    box-shadow: rgba(129, 114, 67, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #282043 0 -3px 0 inset;
+    color: #ffffff;
+}
+
+.toggled .button-30:focus {
+    box-shadow: #3b4251 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #21395a 0 -3px 0 inset;
+}
+
+.toggled .button-30:hover {
+    box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #26253d 0 -3px 0 inset;
+    transform: translateY(-2px);
+}
+
+.toggled .button-30:active {
+    box-shadow: #D6D6E7 0 3px 7px inset;
+    transform: translateY(2px);
+}
+
+.toggled #message {
+    background-color: rgb(255, 255, 255);
+    color: black;
+}
+
+.toggled .lighter {
+    background-color: #6d6e82;
+}
+
+.toggled .darker {
+    background-color: #5e5fae;
+
+}
+
+.toggled #teammember {
+    background-color: rgb(126, 132, 179);
+}
+
+.toggled #feedbtn{
+    background-color: rgb(87, 90, 159)!important;
+    
+  }
+  
+  
+  

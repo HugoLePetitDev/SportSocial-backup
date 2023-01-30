@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="p-2 m-2 popup_event">
+        <div class="md-form">
+            <h2 class="text-center">Créez votre team</h2>
+        </div>
+        <form #title="ngForm" (ngSubmit)="createTeam(title)">
+
+            <div class="md-form">
+                <input id="title"  [(ngModel)]="searchText"  name="title" type="text" class="form-control" placeholder="..." style="width: auto; margin: 5px;">
+            </div>
+
+
+            <div class="md-form">
+                <div class="row">
+                    <div class="col-6">
+                        <span class="input-group-btn" style="width:39px">
+                            <button [disabled]="!searchText"  type="submit"
+                                class="btn btn-secondary btn-block btn-sm" (click)=" onNoClick()">Creer
+                                la team</button>
+                        </span>
+                    </div>
+                    <div class="col-6 text-center">
+                        <button mat-button type="!submit" (click)="onNoClick()">Annuler</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

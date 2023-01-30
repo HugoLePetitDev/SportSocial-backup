@@ -1,0 +1,260 @@
+  /* CSS de la search bar*/
+  .well {
+    background-color: #FCECDD;
+  }
+
+
+  .search-form {
+    border-radius: 30px 0 0 30px;
+    margin: 6px;
+  }
+
+  .input-group {
+    width: 90%;
+  }
+
+  input-group-btn {
+    max-width: 38px;
+  }
+
+  #search {
+    border: 1px;
+    background-color: #FCECDD;
+}
+
+#search-this {
+    background-color: #FFC288;
+}
+
+.search-btn {
+    cursor: pointer;
+    border-radius: 0 30px 30px 0;
+    color: rgb(255, 255, 255);
+    margin-top: 10px;
+
+}
+
+
+/* CSS du scroll */
+.anyClass {
+  height: 805px;
+  overflow-y: scroll;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+  font-size: 85%;
+}
+
+
+#centre {
+  background-color: rgb(255, 255, 255);
+}
+
+.photo_profil {
+  height: 60px;
+  width: 60px;
+  background-size: contain;
+  background-position: 50% 50%;
+  display: inline-block;
+  border: none;
+  -moz-border-radius: 75px;
+  -webkit-border-radius: 75px;
+  border-radius: 75px;
+}
+
+#add_friend_username {
+  text-align: center;
+  vertical-align: middle;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+#demande_amis {
+  height: 200 px;
+  margin-bottom: 30px;
+}
+
+#ajout_amis {
+  height: 615px;
+}
+
+#card_principal_messages {
+  max-height: 800px;
+}
+
+/* CSS de la bare de recherche
+*/
+
+.well {
+  background-color: #ffffee
+}
+
+
+.search-form {
+  border-radius: 30px 0 0 30px;
+  margin: 10px;
+}
+
+.input-group {
+  width: 90%;
+}
+
+input-group-btn {
+  max-width: 38px;
+}
+
+#search {
+  border: 1px;
+}
+
+.search-btn {
+  cursor: pointer;
+  border-radius: 0 30px 30px 0;
+  background-color: rgb(206, 179, 120);
+  color: rgb(255, 255, 255);
+
+}
+
+
+/* Style images */
+.container img {
+  float: left;
+  max-width: 60px;
+  width: 100%;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+.photo_conversation {
+  height: 60px;
+  width: 60px;
+  background-size: contain;
+  background-position: 50% 50%;
+  display: inline-block;
+  border: none;
+  -moz-border-radius: 75px;
+  -webkit-border-radius: 75px;
+  border-radius: 75px;
+}
+
+#zone_saisie_message {
+  margin-top: 10px;
+}
+
+
+/* CSS du scroll */
+.anyClass {
+  height: auto;
+  overflow-y: scroll;
+}
+
+.card-header {
+  background-color: #FCECDD;
+  color: black;
+}
+
+.btnPrincipal {
+  background-color: #FFC288 !important;
+}
+
+/* CSS zone de visalisation des amis */
+
+#card_principal_amis {
+  min-height: auto;
+  max-height: 520px;
+  margin: 25px !important;
+  border: none;
+}
+
+#card_data {
+  min-height: 200px;
+  margin: 25px !important;
+  border: none;
+}
+
+#card_next_events{
+  min-height: auto;
+  max-height: 800px;
+  margin: 25px !important;
+  border: none;
+}
+
+#feed {
+  max-height: 720px;
+}
+
+/* CSS des titres */
+
+h4 {
+  color: white;
+}
+
+#feedbtn{
+  background-color: #FFC288 ;
+  color: white;
+}
+
+#feedbtn-active{
+  background-color: #643f1d ;
+  color: white;
+}
+
+#next_event{
+  box-shadow: none;
+  border-top: white !important;
+  border-left: white !important;
+  border-right: white !important;
+}
+
+#card_friend{
+  box-shadow: none;
+  border-top: white !important;
+  border-left: white !important;
+  border-right: white !important;
+}
+
+
+/* Dark Mode CSS */
+
+.toggled {
+  color: rgb(255, 255, 255);
+  background: rgb(42, 42, 42) ;
+}
+
+.toggled .card-header {
+  background-color: rgb(136, 142, 183);
+  color: black;
+}
+
+
+.toggled #search {
+  border: 1px;
+  background-color: rgb(136, 142, 183);
+  color: white;
+}
+
+.toggled #search-this {
+  cursor: pointer;
+  border-radius: 0 30px 30px 0;
+  background-color: rgb(87, 90, 159);
+  color: rgb(255, 255, 255);
+
+}
+
+.toggled .btnPrincipal {
+  background-color: #3f4a6e !important;
+}
+
+.toggled #feedbtn{
+  background-color: rgb(87, 90, 159)!important;
+  color: white;
+}
+
+.toggled #feedbtn-active{
+  background-color: rgb(56, 57, 97)!important;
+  color: white;
+}
+

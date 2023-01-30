@@ -1,0 +1,86 @@
+/* CSS de la bare de recherche
+*/
+
+.well {
+  background-color: #ffffee
+}
+
+
+.search-form {
+  border-radius: 30px 0 0 30px;
+  margin: 5px;
+}
+
+.input-group {
+  width: 90%;
+}
+
+input-group-btn {
+  max-width: 38px;
+}
+
+#search {
+  border: 1px;
+  background-color: #FCECDD;
+}
+
+#search-this {
+  background-color: #FFC288;
+}
+
+.search-btn {
+  cursor: pointer;
+  border-radius: 0 30px 30px 0;
+  color: rgb(255, 255, 255);
+
+}
+
+.box {
+  width: 180px;
+  height: 30px;
+  font-size: 15px;
+  color: #ffffff;
+  background-color: #FFC288;
+  border-radius: 5px;
+}
+
+#card_map {
+  height: auto;
+}
+
+/* Dark Mode CSS */
+
+.toggled {
+  color: rgb(255, 255, 255);
+  background: rgb(42, 42, 42) ;
+}
+
+.toggled .card-header {
+  background-color: rgb(136, 142, 183);
+  color: black;
+}
+
+
+.toggled #search {
+  border: 1px;
+  background-color: rgb(136, 142, 183);
+  color: white;
+}
+
+.toggled #search-this {
+  cursor: pointer;
+  border-radius: 0 30px 30px 0;
+  background-color: rgb(87, 90, 159);
+  color: rgb(255, 255, 255);
+
+}
+
+.toggled .btnPrincipal {
+  background-color: #3f4a6e !important;
+}
+
+
+.toggled .box {
+  color: #ffffff;
+  background-color: #373457;
+}

@@ -1,0 +1,49 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
+
+
+<body [class.toggled]="classToggled">
+
+
+    <div class="pageaccueil" [class.toggled]="classToggled">
+
+        <div id="cardTitre" class="card p-4" [class.toggled]="classToggled">
+            <h1 id="titre">Sport Social</h1>
+        </div>
+
+
+        <div class="formulaireConnexion" [class.toggled]="classToggled">
+            <form #flogin="ngForm" (ngSubmit)="connexion(flogin.value)" [class.toggled]="classToggled">
+                <!-- ng form est capable de fournir toutes les informations du formulaire à flogin-->
+                <!-- f.value prend chaque valeur du formulaire -->
+                <div id="formulaire" class="card p-3" [class.toggled]="classToggled">
+                    <div class="alert alert-danger text-center" *ngIf="msgErr != ''">
+                        {{msgErr}}
+                    </div>
+                    <div id="formulaire" class="md-form" [class.toggled]="classToggled">
+
+                        <label id="formulaire" [class.toggled]="classToggled" >Pseudo</label>
+                        <input id="formulaire" [class.toggled]="classToggled" name="loginUser" ngModel="" type="text" class="form-control" style="margin-top: 15px;">
+                        <!-- name correspond aux champs de la table qu'on rentre dans postman -->
+                    </div>
+                    <div id="formulaire"  class="md-form" [class.toggled]="classToggled">
+                        <label id="formulaire" [class.toggled]="classToggled" >Mot de passe</label>
+                        <input id="formulaire" [class.toggled]="classToggled" [type]="show ? 'text' : 'password'" name="passwordUser" ngModel="" type="password" class="form-control " style="margin-top: 15px;">
+                        <span *ngIf="visiblePassword" id="eye" class="fa fa-fw fa-eye field-icon toggle-password" (click)="password()">{{show ? '' : ''}}</span>
+                        <span *ngIf="!visiblePassword" id="eye" class="fa fa-fw fa-eye-slash field-icon toggle-password" (click)="password()">{{show ? '' : ''}}</span>
+                    </div>
+
+                    <button type="submit" class="btnPrincipal  btn  btn-block btn-sm">Connexion</button>
+                    <button id="inscription" (click)="goToInscription()" type="button" class="btn btn-link btn-block btn-sm">Inscription
+                    </button>
+                    <br>
+
+
+                </div>
+            </form>
+
+        </div>
+    </div>
+    
+</body>

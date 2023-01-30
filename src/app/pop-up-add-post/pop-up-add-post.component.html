@@ -1,0 +1,29 @@
+<form #infosPost="ngForm" (ngSubmit)="createPost(infosPost.value.contentPost)">
+    <div class="createPost">
+        <div class="text-center">
+            <p>Créer un post</p>
+        </div>
+        <div class="row">
+            <div class="col-12 p-3">
+                <mat-form-field class="content">
+                    <mat-label>Contenu du post</mat-label>
+                    <textarea matInput name="contentPost" ngModel=""></textarea>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="md-form">
+            <div class="row">
+                <div class="col-6">
+                    <span class="input-group-btn" style="width:39px">
+                        <button [disabled]="!infosPost.form.valid" type="submit"
+                            class="btn btn-secondary btn-block btn-sm" (click)=" onNoClick()">Poster</button>
+                    </span>
+                </div>
+                <div class="col-6 text-center">
+                    <button mat-button (click)="onNoClick()">Annuler</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

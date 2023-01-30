@@ -1,0 +1,125 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-3 p-4">
+            <div id="card_data" class="card p-3 m-3" [class.toggled]="classToggled"
+                style="background-color: transparent;">
+                <div class="row">
+                    <div class="col-12">
+                        <a [class.toggled]="classToggled" id="btn_dropdown" mat-raised-button
+                            (click)="openNewEventModal()">
+                            Créer un nouvel événement
+                            <mat-icon>add</mat-icon>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-9 transparent_toggled" [class.toggled]="classToggled"
+            style="background-color: transparent; border : none">
+            <div id="card_data" class="card p-0 m-0 row event window"
+                style="background-color: transparent; border : none">
+                <div class="row">
+                    <div class="col-2" style="margin-top: 20px;">
+                        <button mat-button [matMenuTriggerFor]="event" class="nav-link white-text "
+                            style="width : auto;"><i class="fas fa-bars"></i>Filtrer</button>
+                        <mat-menu #event="matMenu" style="background-color: white;">
+                            <button style="background-color: white;" mat-menu-item (click)="visibleSearchEvent()"
+                                routerLinkActive="menu-active">Rechercher un event</button>
+                            <button style="background-color: white;" mat-menu-item (click)="visibleFilterEvent ()"
+                                routerLinkActive="menu-active">Filtrer par sport</button>
+                        </mat-menu>
+                    </div>
+                    <div class="col-10 " style="margin-top: 20px;" *ngIf="visibleSearch">
+                        <div class="container" >
+                            <div id="content">
+                                <form #infosEvent="ngForm" (ngSubmit)="FilterEvent(Events.value)">
+                                    <div class="input-group">
+                                        <input ngModel="" #Events name="Events" type='text' id='search'
+                                            class="form-control search-form" placeholder="Rechercher...">
+                                        <span class="input-group-btn" style="width:39px">
+                                            <button id="search-this" type="button" class="pull-right btn search-btn">
+                                                <i class="fa fa-search"></i>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-10 " style="margin-top: 20px;" *ngIf="visibleFilter">
+                        <div class="container" >
+                            <form>
+                                <mat-form-field id="btn-filter-event">
+                                    <mat-label>
+                                        Filtrer par sport :
+                                    </mat-label>
+                                    <mat-select id="btn-filter-event" class="" name="sportEvent" ngModel="">
+                                        <mat-option>Tous les sports</mat-option>
+                                        <mat-option [value]="s" *ngFor="let s of sports">
+                                            {{s.nameSport}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                <button mat-icon-button mat-icon-button>
+                                    <i class="fa fa-search"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="card_event" class="card" *ngFor="let e of events" [class.toggled]="classToggled" style="background-color : transparent; border : none">
+
+                    <div class="card m-1 p-1" [class.toggled]="classToggled">
+                        <div class="row">
+                            <div class="col-3" [class.toggled]="classToggled">
+                                <h2>{{e.sportEvent.nameSport}}</h2>
+                            </div>
+                            <div class="col-9" [class.toggled]="classToggled">
+                                <h1 class="title-event">{{e.titleEvent}}</h1>
+                            </div>
+                        </div>
+                        <div class="row" [class.toggled]="classToggled">
+                            <div class="col-3" [class.toggled]="classToggled">
+                                <img class="photo_event" src="{{e.sportEvent.imageSport.nameImage}}" alt="">
+                            </div>
+                            <div class="col-4" [class.toggled]="classToggled">
+                                <p>{{e.descriptionEvent}}</p>
+                            </div>
+                            <div class="col-3" [class.toggled]="classToggled">
+
+                                <div class="container" [class.toggled]="classToggled">
+                                    <div class="row">
+                                        <p>Début : {{e.dateStart | date: 'd MMM y H:mm'}}</p>
+                                    </div>
+                                    <div class="row">
+                                        <p>Fin : {{e.dateEnd | date: 'd MMM y H:mm'}}</p>
+                                    </div>
+                                    <div class="row">
+                                        <p>Prix : {{e.priceEvent}} token</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2" *ngIf="!verifUser(e)" [class.toggled]="classToggled">
+                                <a [class.toggled]="classToggled" id="btn_dropdown" mat-raised-button
+                                    (click)="addEventToUser(e.idEvent)">
+                                    Participer
+                                    <mat-icon>add</mat-icon>
+                                </a>
+                            </div>
+                            <div class="col-2" *ngIf="verifUser(e)" [class.toggled]="classToggled">
+                                <a [class.toggled]="classToggled" id="btn_dropdown" mat-raised-button
+                                    (click)="removeUserFromEvent(e.idEvent)">
+                                    Se désister
+                                    <mat-icon>remove</mat-icon>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

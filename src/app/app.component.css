@@ -1,0 +1,105 @@
+/* CSS de la navbar */
+.navbar {
+  overflow: hidden;
+  background-color: #c86c26;
+  height: 60px;
+
+} 
+
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+}
+
+.subnav .navbar {
+  float: right;
+  overflow: hidden;
+}
+
+
+.subnav .subnavbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+/*
+.navbar a:hover,
+.subnav:hover .subnavbtn {
+  background-color: #FFC288;
+  ;
+}
+*/
+
+.subnav-content {
+  display: none;
+  position: absolute;
+  left: 0;
+  background-color: #FFC288;
+  width: 100%;
+  z-index: 1;
+}
+
+.subnav-content a {
+  float: right;
+  color: white;
+  text-decoration: none;
+}
+/*
+.subnav-content a:hover {
+  background-color: #eee;
+  color: black;
+}
+*/
+
+.subnav:hover .subnav-content {
+  display: block;
+}
+
+/*
+.menu-active {
+  letter-spacing: 2px;
+  color: rgb(49, 49, 49) !important;
+  background-color: #e99c62;
+  margin: 0;
+}
+*/
+
+/* Dark mode CSS */ 
+
+.toggled .navbar {
+
+  overflow: hidden;
+  background: linear-gradient(to bottom right, rgb(15, 30, 57), #1c2535);
+}
+/*
+.toggled .navbar a:hover,
+.subnav:hover .subnavbtn {
+  background-color: #343568;
+  ;
+}
+*/
+
+.toggled .subnav-content {
+  display: none;
+  position: absolute;
+  left: 0;
+  background-color: #424877;
+  width: 100%;
+  z-index: 1;
+}
+
+
+/*
+.toggled .menu-active {
+  letter-spacing: 2px;
+  color: rgb(136, 142, 183) !important;
+  background-color: #343568;
+}
+*/

@@ -1,0 +1,99 @@
+.anyClass {
+    height: auto;
+    overflow-y: scroll;
+}
+
+img {
+
+    max-width: 75px;
+    max-height: 75px;
+    width: 100%;
+    height: 100%;
+    margin-right: 20px;
+    border-radius: 50%;
+  }
+
+  .card {
+    width: min(100%, 600px);
+  }
+
+  #inside-card {
+    height: 100px;
+  }
+
+  .card-header {
+    background-color: #FCECDD;
+    color: black;
+  }
+
+  h4 {
+    color : white;
+  }
+
+  #card_data {
+    margin: 25px !important;
+    border: none;
+  }
+
+  #card_user {    
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    margin: 25px !important;
+    border: none;
+  }
+
+  #loginUser{
+    margin: 5px;
+    border-radius: 15px;
+    width: auto;
+  }
+  
+/* Dark Mode CSS */
+
+
+.toggled .card-header {
+  background-color: rgb(136, 142, 183);
+  color: black;
+}
+
+
+.toggled #search {
+  border: 1px;
+  background-color: rgb(136, 142, 183);
+  color: white;
+}
+
+.toggled #search-this {
+  cursor: pointer;
+  border-radius: 0 30px 30px 0;
+  background-color: rgb(87, 90, 159);
+  color: rgb(255, 255, 255);
+
+}
+
+.toggled .btnPrincipal {
+  background-color: #3f4a6e !important;
+}
+
+.toggled #feedbtn{
+  background-color: rgb(87, 90, 159)!important;
+  color: white;
+}
+
+.toggled #feedbtn-active{
+  background-color: rgb(56, 57, 97)!important;
+  color: white;
+}
+
+.toggled #card_data {
+  background: rgb(42, 42, 42) !important;
+  color: white !important;
+}
+
+.toggled #card_user {    
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+}
+

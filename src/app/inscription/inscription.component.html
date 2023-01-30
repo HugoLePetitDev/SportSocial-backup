@@ -1,0 +1,49 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
+
+<body [class.toggled]="classToggled">
+    <div class="pageaccueil" [class.toggled]="classToggled">
+
+        <div id="cardTitre" class="card p-4" [class.toggled]="classToggled">
+            <h1 id="titre">Sport Social</h1>
+        </div>
+
+        <div class="formulaireConnexion" [class.toggled]="classToggled">
+            <form #infosUser="ngForm" (ngSubmit)="inscription(infosUser.value)" [class.toggled]="classToggled">
+                <div class="card p-3">
+                    <div class="md-form">
+                        <label>Nom</label>
+                        <input name="lastNameUser" ngModel="" type="text" class="form-control">
+                    </div>
+                    <div class="md-form">
+                        <label>Prénom</label>
+                        <input name="firstNameUser" ngModel="" type="text" class="form-control">
+                    </div>
+                    <div class="md-form">
+                        <label>Date de naissance (AAAA-MM-JJ)</label>
+                        <input name="birthDateUser" ngModel="" type="text" class="form-control">
+                    </div>
+                    <div class="md-form">
+                        <label>Pseudo</label>
+                        <input name="loginUser" ngModel="" type="text" class="form-control">
+                    </div>
+                    <div class="md-form">
+                        <label>Mot de passe</label>
+                        <input [type]="show ? 'text' : 'password'" name="passwordUser" ngModel="" type="password" class="form-control " >
+                        <span *ngIf="visiblePassword" id="eye" class="fa fa-fw fa-eye field-icon toggle-password" (click)="password()">{{show ? '' : ''}}</span>
+                        <span *ngIf="!visiblePassword" id="eye" class="fa fa-fw fa-eye-slash field-icon toggle-password" (click)="password()">{{show ? '' : ''}}</span>
+                    </div>
+                    <div class="md-form">
+                        <label>Etes-vous coach ?</label>
+                        <br><br>
+                        <mat-slide-toggle name="coachUser" [(ngModel)]="isChecked" ></mat-slide-toggle>
+                    </div>
+                    <button type="submit" class="btnPrincipal  btn  btn-block btn-sm">Inscription</button>
+                    <button (click)="goToConnexion()" type="button" class="btn btn-link btn-block btn-sm">Retour à la
+                        connexion</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>

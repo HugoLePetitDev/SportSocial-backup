@@ -1,0 +1,381 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-3 p-4">
+
+            <div id="card-user" class="card p-0 m-0" [class.toggled]="classToggled">
+                <div id="loginUser" class="card-header">
+                    <div class="row">
+                        <div class="col-10">
+                            <h3 style="font-weight: bold" class="text-center">{{userInfo.loginUser}} </h3>
+                        </div>
+                        <div class="col-2" *ngFor="let s of scoreTot.slice(0, 1);">
+                            <i *ngIf="scoreTot[0].user.idUser == authService.getUserConnect().idUser"
+                                class="fas fa-crown" style="color: #FFD700;"></i>
+                            <div *ngIf="scoreTot[1] != null">
+                                <i *ngIf="scoreTot[1].user.idUser == authService.getUserConnect().idUser"
+                                    class="fas fa-crown" style="color:#C0C0C0;"></i>
+                            </div>
+                            <div *ngIf="scoreTot[2] != null">
+                                <i *ngIf="scoreTot[2].user.idUser == authService.getUserConnect().idUser"
+                                    class="fas fa-crown" style="color: #CD7F32;"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mx-auto text-center p-2">
+                    <img src="{{userInfo.imageUser.nameImage}}">
+                </div>
+            </div>
+
+            <div id="card_data" class="card p-0 m-0" [class.toggled]="classToggled" style="height: 475px;">
+                <div class="card-header">
+                    <h3 class="text-center">Données personnelles</h3>
+                </div>
+
+                <div class="md-form" [class.toggled]="classToggled">
+                    <div class="p-3" [class.toggled]="classToggled">
+                        <p *ngIf="authService.getUserConnect().idUser"
+                            style="font-style: italic; font-weight: lighter !important; font-size: 50%;"> <i
+                                class="fas fa-circle" style="color: rgb(150, 211, 137); size: 50%;"></i> En ligne</p>
+                        <p *ngIf="!authService.getUserConnect().idUser"
+                            style="font-style: italic; font-weight: lighter !important; font-size: 50%;"> <i
+                                class="fas fa-circle" style="color: rgb(171, 174, 171); size: 50%;"></i> Hors ligne</p>
+                        <div class="row">
+                            <div class="col-6">
+                                <p>Nom : </p>
+                                <p>Prénom : </p>
+                                <p>Date de naissance: </p>
+                                <p>Pseudo : </p>
+                                <p *ngIf="userInfo.coachUser == true">Coach : </p>
+                                <p *ngIf="userInfo.coachUser != true">Coach : </p>
+                                <p *ngIf="authService.getUserConnect().addressUser != null">Adresse :</p>
+                                <p *ngIf="authService.getUserConnect().addressUser == null">Adresse :</p>
+                                <div style="text-align: left; ">
+                                    <button mat-icon-button mat-icon-button [matMenuTriggerFor]="menu" #menuTrigger>
+                                        <mat-icon svgIcon="Option" aria-hidden="false"></mat-icon>
+                                    </button>
+                                    <mat-menu #menu="matMenu" xPosition="before">
+                                        <button mat-menu-item (click)="openModifDonneesPersosModal()">Modifier les
+                                            données
+                                            personnelles</button>
+                                        <button mat-menu-item (click)="openInventaire()">Changer de photo de
+                                            profil</button>
+                                        <button mat-menu-item (click)="openChangerMdp()">Changer le mot de
+                                            passe</button>
+                                        <button mat-menu-item
+                                            (click)="disableAccount(authService.getUserConnect())">Désactiver
+                                            son compte</button>
+                                    </mat-menu>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <p><b>{{userInfo.lastNameUser}} </b></p>
+                                <p><b>{{userInfo.firstNameUser}}</b></p>
+                                <p><b>{{userInfo.birthDateUser | date: 'd MMM y'}}</b></p>
+                                <p><b>{{userInfo.loginUser}}</b></p>
+                                <p *ngIf="userInfo.coachUser == true"><b>Oui</b></p>
+                                <p *ngIf="userInfo.coachUser != true"><b>Non</b></p>
+                                <p *ngIf="authService.getUserConnect().addressUser != null">
+                                    <b>{{authService.getUserConnect().addressUser.streetAddress}}</b>
+                                </p>
+                                <p><b>{{authService.getUserConnect().addressUser.zipCodeAddress}}
+                                        {{authService.getUserConnect().addressUser.cityAddress}}</b></p>
+                                <p *ngIf="authService.getUserConnect().addressUser == null">Adresse : <b>Non
+                                        précisée</b></p>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <div class="col-6 p-4 ">
+            <ul style="list-style: none;">
+                <li>
+                    <!--Search bar : centrée, avec bouton "search" à droite-->
+                    <div class="container" [class.toggled]="classToggled" style="background-color: transparent;">
+
+                        <div id="content" id="search-card">
+                            <form Activity="ngForm" (ngSubmit)="FilterActivity(Activity.value)">
+                                <div class="input-group">
+                                    <input ngModel="" #Activity name="Activity" type='text' id='search'
+                                        class="form-control search-form" placeholder="Rechercher...">
+                                    <span class="input-group-btn" style="width:39px">
+                                        <button id="search-this" type="button" class="pull-right btn search-btn">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </li>
+                <div>
+                    <li class="anyClass">
+                        <h4>Mes activités</h4>
+                        <div class="card p-3 m-3 col-11" *ngFor="let a of activite;  " [class.toggled]="classToggled">
+                            <div class="row">
+                                <div class="col-9 justify-content-center">
+                                    <h2> {{a.activity.nameActivity}}</h2>
+                                </div>
+                                <div *ngIf="a.activity.done == true && a.activity.pastDateActivity == true"
+                                    class="col-3 justify-content-center">
+                                    <b>+ 100 points</b>
+                                </div>
+                                <div *ngIf="a.activity.done == false && a.activity.pastDateActivity == true"
+                                    class="col-3 justify-content-center">
+                                    <button id="btn_done" mat-button (click)="doneActivity(a)"> Fait !</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <b>Description :</b>
+                                    <p>{{a.activity.descActivity}}</p>
+                                </div>
+                                <div class="col-6">
+                                    <b>Date</b>
+                                    <p>Début : {{a.activity.dateStart | date: 'd MMM y H:mm'}}</p>
+                                    <p>Fin : {{a.activity.dateEnd | date: 'd MMM y H:mm'}}</p>
+                                </div>
+                            </div>
+
+                        </div>
+                        <h4>Mes événements</h4>
+                        <div *ngIf="myEvents.length==0">
+                            <div class="card p-3 m-3 col-11" [class.toggled]="classToggled">
+                                <p>Aucun évènement</p>
+                            </div>
+                        </div>
+                        <div *ngIf="myEvents.length!=0">
+                            <div class="card p-3 m-3 col-11" *ngFor="let me of myEvents;  "
+                                [class.toggled]="classToggled">
+                                <div class="container m-1 p-1">
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <img class="photo_event" src="{{me.sportEvent.imageSport.nameImage}}"
+                                                alt="">
+                                        </div>
+                                        <div class="col-5">
+                                            <h1 class="title-event">{{me.titleEvent}} <h4>{{me.dateStart | date: 'd
+                                                    MMM
+                                                    y '}}</h4>
+                                            </h1>
+                                        </div>
+                                        <div class="col-2">
+                                            <button mat-icon-button mat-icon-button (click)="me.visible =!me.visible">
+                                                <mat-icon style=" font-size: 0.73em;" svgIcon="information"
+                                                    aria-hidden="false"></mat-icon>
+                                            </button>
+                                        </div>
+                                        <div class="col-3">
+                                            <h4
+                                                *ngIf="(me.dateStart | date: 'd MMM y ') == (dateNow | date: 'd MMM y ')">
+                                                Aujourd'hui</h4>
+                                            <div *ngIf="me.authorEvent.idUser == authService.getUserConnect().idUser">
+                                                <button (click)="doneEvent(me)" *ngIf="me.pastDate && !me.done" id="btn_done" mat-button> Fait !</button>
+                                            </div>
+                                            <h4 *ngIf="!me.pastDate && !((me.dateStart | date: 'd MMM y ') == (dateNow | date: 'd MMM y '))"> A venir</h4>
+                                            <b *ngIf="me.pastDate && !((me.dateStart | date: 'd MMM y ') == (dateNow | date: 'd MMM y ')) && me.done"> + {{me.score}} points</b>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="row" *ngIf="me.visible">
+                                            <div class="col-5">
+                                                <b>Description : </b>
+                                                <p>{{me.descriptionEvent}}</p>
+                                                <div class="row">
+                                                    <b>Prix : </b>
+                                                    <p>{{me.priceEvent}} €</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-5">
+
+                                                <div class="container">
+                                                    <b>Date : </b>
+                                                    <div class="row">
+                                                        <p>Début : {{me.dateStart | date: 'd MMM y H:mm'}}</p>
+                                                    </div>
+                                                    <div class="row">
+                                                        <p>Fin : {{me.dateEnd | date: 'd MMM y H:mm'}}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-2">
+                                                <button *ngIf="!me.pastDate" (click)="removeUserFromEvent(me)"
+                                                    style="width : 50%; font-size: 50%;" id="btn_event" mat-button>Se
+                                                    désister</button>
+                                                <button *ngIf="me.pastDate" (click)="removeUserFromEvent(me)"
+                                                    style="width : 50%; font-size: 50%;" id="btn_event"
+                                                    mat-button>Supprimer</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h4>Notifications</h4>
+                        <div class="card p-3 m-3 col-11" *ngIf="exchange.length==0" [class.toggled]="classToggled">
+
+                            <div class="col-12 justify-content-center">
+                                <p>Vous n'avez pas reçu de Tokens</p>
+                            </div>
+                        </div>
+                        <div *ngIf="exchange.length!=0">
+                            <div class="card p-3 m-3 col-11" *ngFor="let e of exchange" [class.toggled]="classToggled">
+                                <div class="col-12">
+                                    <div class="row">
+                                        <p class="photo_profil col-3"><img src="{{e.applicant.imageUser.nameImage}}"
+                                                alt="">
+                                        </p>
+                                        <p class="col-9" style="align-items: center;">{{e.notification}}</p>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                    </li>
+                </div>
+            </ul>
+        </div>
+
+        <div class="col-3 p-4" [class.toggled]="classToggled" style="background-color: transparent;">
+
+            <div class="card p-3 m-3" id="card-header" [class.toggled]="classToggled">
+                <div class="row ">
+                    <div class="col-5">
+                        <p style="font-size: 80%;">Vous possédez actuellement :</p>
+                        <p style="font-weight: bold;">{{userInfo.token}} tokens</p>
+                    </div>
+                    <div class="col-5">
+                        <button id="feedbtn" mat-button (click)="goToShop()">
+                            <p style="font-size: 65%;">Acheter des
+                                tokens</p>
+                            <button mat-icon-button mat-icon-button>
+                                <i class="fas fa-euro-sign" style="color: rgb(255, 255, 255);"></i>
+                            </button>
+                        </button>
+                    </div>
+                </div>
+                <div class="row ">
+
+                </div>
+            </div>
+
+            <div class="card p-3 m-3" [class.toggled]="classToggled"
+                style="background-color: transparent ; border: none; box-shadow: none !important;">
+                <button id="btnranking" mat-button (click)="goToRanking()">
+                    <p style="font-size: 80%;">Classement
+                        Personnel</p>
+                    <button mat-icon-button mat-icon-button>
+                        <i class="fas fa-crown" style="color: yellow;"></i>
+                    </button>
+                </button>
+            </div>
+
+            <div id="card_training" class="card p-0 m-0" [class.toggled]="classToggled">
+                <div class="card-header ">
+                    <div class="row">
+                        <div class="col-9">
+                            <h3 class="text-center">Entrainement</h3>
+                        </div>
+                        <div class="col-1">
+                            <div *ngIf="!visibleAddTraining">
+                                <button (click)="visibleAddTrainingFonction()" mat-icon-button mat-icon-button>
+                                    <i class="fas fa-plus"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id="training" [class.toggled]="classToggled">
+                    <div *ngIf="visibleAddTraining" [class.toggled]="classToggled">
+                        <form #infosTraining="ngForm" (ngSubmit)="createTraining(infosTraining.value)">
+                            <div class="card p-3" [class.toggled]="classToggled"
+                                style="border: none; box-shadow: none;">
+                                <div class="md-form">
+                                    <mat-form-field>
+                                        <mat-label>
+                                            Sport :
+                                        </mat-label>
+                                        <mat-select class="" name="trainingSport" ngModel="" required>
+                                            <mat-option [value]="s" *ngFor="let s of sports">
+                                                {{s.nameSport}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <label>Entrainement</label>
+                                <div class="md-form" [class.toggled]="classToggled">
+                                    <input id="newMemo" name="memo" ngModel="" class="form-control" required>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <button id="feedbtn" mat-button
+                                            style="width: auto; height : auto;">Ajouter</button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button id="feedbtn" mat-button (click)="visibleAddTrainingFonction()"
+                                            style="width: auto; height : auto;">Annuler</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div *ngIf="training.length !=0" id="card_memo" class="card p-2 m-2"
+                        style="border: none; box-shadow: none;" [class.toggled]="classToggled">
+
+                        <div *ngFor="let t of training" [class.toggled]="classToggled">
+                            <b style="margin-right: 10px;">{{t.trainingSport.nameSport}}</b>
+                            <i *ngIf="t.trainingSport.nameSport == 'Football' " class="fas fa-futbol"></i>
+                            <i *ngIf="t.trainingSport.nameSport == 'Escalade' " class="fas fa-mountain"></i>
+                            <mat-icon style=" font-size: 0.73em;" *ngIf="t.trainingSport.nameSport == 'Rugby'"
+                                svgIcon="rugby" aria-hidden="false"></mat-icon>
+                            <mat-icon style=" font-size: 0.73em;" *ngIf="t.trainingSport.nameSport == 'Course à pied' "
+                                svgIcon="running" aria-hidden="false"></mat-icon>
+                            <mat-icon style=" font-size: 0.73em;" *ngIf="t.trainingSport.nameSport == 'Natation' "
+                                svgIcon="swim" aria-hidden="false"></mat-icon>
+                            <mat-icon style=" font-size: 0.73em;" *ngIf="t.trainingSport.nameSport == 'Basketball' "
+                                svgIcon="basket" aria-hidden="false"></mat-icon>
+                            <button style=" float: right;" mat-icon-button mat-icon-button [matMenuTriggerFor]="memo"
+                                #menuTrigger>
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
+                            <mat-menu #memo="matMenu" xPosition="before">
+                                <button mat-menu-item (click)="deleteTraining(t)">Supprimer</button>
+                                <button *ngIf="!t.visible" mat-menu-item
+                                    (click)="t.visible =!t.visible">Afficher</button>
+                                <button *ngIf="t.visible" mat-menu-item (click)="t.visible =!t.visible">Cacher</button>
+                            </mat-menu>
+                            <div id="memo">
+                                <p *ngIf="!t.visible" id="memo_parag">{{t.memo}}</p>
+                                <p *ngIf="t.visible">{{t.memo}}</p>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div *ngIf="training.length ==0" id="inside-card" class="card p-2 m-2"
+                        [class.toggled]="classToggled">
+                        <p>Aucun entrainement enregistré</p>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>

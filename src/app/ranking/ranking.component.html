@@ -1,0 +1,232 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-8 p-4">
+            <div class="card p-3 m-3" [class.toggled]="classToggled">
+                <div class="row">
+                    <div class="col-6 p-4">
+                        <h1>Classement</h1>
+                        <p>Vous souhaitez connaître le classement des meilleurs utilisateurs par sport ? </p>
+                        <div class="row">
+                            <form #choixSport="ngForm" (ngSubmit)="ListRankingdesc(choixSport.value)">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <mat-form-field>
+                                            <mat-label>
+                                                Filtrer par sport :
+                                            </mat-label>
+                                            <mat-select class="box" ngModel="" name="sports" id="sports">
+                                                <mat-option>-Effacer la selection-</mat-option>
+                                                <mat-option [value]="s" *ngFor="let s of sports" value="">
+                                                    {{s.nameSport}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-6">
+                                        <button mat-icon-button mat-icon-button>
+                                            <i class="fa fa-search"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="row">
+                            <div id="images">
+                                <h2>Et vous ?</h2>
+                                <h3>Vous aussi, vous voulez apparaître au sommet du classement de votre sport favori ?
+                                </h3>
+                                <h4>N'attendez plus, réservez une session d'entraînement avec l'un de nos coachs
+                                    sportifs!
+                                </h4>
+                                <button id="feedbtn" mat-button (click)="goToShop()">Réserver une session avec un
+                                    coach</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 p-4">
+                        <h1 *ngIf="score != null">Classement par activité : </h1>
+                        <h1 *ngIf="score == null">Classement général </h1>
+                        <div class="container " *ngIf="score == null">
+                            <div  id="card_style" class="card p-3 m-3 col-11 " *ngFor="let s of scoreTot;  "
+                                [class.toggled]="classToggled">
+                                <div class="row">
+                                    <div class="col-5 justify-content-center">
+                                        <div class="row">
+                                            <div class="col-10">
+                                        <h2 class="">{{s.user.loginUser}}</h2>
+                                    </div>
+                                    <div class="col-2">
+                                        <i *ngIf="scoreTot[0].user.idUser == s.user.idUser" class="fas fa-crown"
+                                            style="color: #FFD700;"></i>
+                                        <div *ngIf="scoreTot[1] != null">
+                                            <i *ngIf="scoreTot[1].user.idUser == s.user.idUser" class="fas fa-crown"
+                                                style="color: #C0C0C0 ;"></i>
+                                        </div>
+                                        <div *ngIf="scoreTot[2] != null">
+                                            <i *ngIf="scoreTot[2].user.idUser == s.user.idUser" class="fas fa-crown"
+                                                style="color: #CD7F32;"></i>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <img class="photo_profil image-rond image-rond-bg"
+                                            src="{{s.user.imageUser.nameImage}}" alt="">
+                                    </div>
+                                    <div class="col-8">
+                                        <p>{{s.sum}} points </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container" *ngIf="score != null && score.length ==0">
+                            <p>Aucun score enregsitré pour cette discipline </p>
+                        </div>
+                        <div class="container">
+                            <div  id="card_style" class="card p-3 m-3 col-11" *ngFor="let s of score;  " [class.toggled]="classToggled">
+                                <div></div>
+                                <div class="row">
+                                    <div class="col-3 justify-content-center">
+                                        <h2 class="">{{s.user.loginUser}}</h2>
+                                    </div>
+                                    <div class="col-1">
+                                        <i *ngIf="score[0].user.idUser == s.user.idUser" class="fas fa-crown"
+                                            style="color: #FFD700;"></i>
+                                        <div *ngIf="score[1] != null">
+                                            <i *ngIf="score[1].user.idUser == s.user.idUser" class="fas fa-crown"
+                                                style="color: #C0C0C0 ;"></i>
+                                        </div>
+                                        <div *ngIf="score[2] != null">
+                                            <i *ngIf="score[2].user.idUser == s.user.idUser" class="fas fa-crown"
+                                                style="color: #CD7F32;"></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-5">
+                                        <p>{{s.sport.nameSport}}</p>
+                                    </div>
+                                    <div class="col-1">
+                                        <i *ngIf="s.sport.nameSport == 'Football' " class="fas fa-futbol"></i>
+                                        <i *ngIf="s.sport.nameSport == 'Escalade' " class="fas fa-mountain"></i>
+                                        <mat-icon style=" font-size: 0.73em;" *ngIf="s.sport.nameSport == 'Rugby'"
+                                            svgIcon="rugby" aria-hidden="false"></mat-icon>
+                                        <mat-icon style=" font-size: 0.73em;"
+                                            *ngIf="s.sport.nameSport == 'Course à pied' " svgIcon="running"
+                                            aria-hidden="false"></mat-icon>
+                                        <mat-icon style=" font-size: 0.73em;" *ngIf="s.sport.nameSport == 'Natation' "
+                                            svgIcon="swim" aria-hidden="false"></mat-icon>
+                                        <mat-icon style=" font-size: 0.73em;" *ngIf="s.sport.nameSport == 'Basketball' "
+                                            svgIcon="basket" aria-hidden="false"></mat-icon>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <img class="photo_profil image-rond image-rond-bg"
+                                            src="{{s.user.imageUser.nameImage}}" alt="">
+                                    </div>
+                                    <div class="col-8">
+                                        <p>{{s.score}} points</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-4 p-4">
+            <div class="card p-0 m-0" id="card_scores" [class.toggled]="classToggled">
+                <div class="card-header">
+                    <h3 class="text-center">Vos scores</h3>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-10">
+                            <div id="content">
+                                <form Score="ngForm" (ngSubmit)="filterMyScore(Score.value)">
+                                    <div class="input-group">
+                                        <input ngModel="" #Score name="Score" type='text' id='search'
+                                            class="form-control search-form" placeholder="Rechercher...">
+                                        <span class="input-group-btn" style="width:39px">
+                                            <button id="search-this" type="button" class="pull-right btn search-btn">
+                                                <i class="fa fa-search"></i>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div *ngIf="!visibleAddRanking" class="row" [class.toggled]="classToggled">
+                                <button mat-icon-button mat-icon-button (click)="visibleAddRankingFonction()">
+                                    <i class="fas fa-plus"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div *ngIf="visibleAddRanking" [class.toggled]="classToggled">
+                        <form #infosRanking="ngForm" (ngSubmit)="addRanking(infosRanking.value)">
+                            <div class="card p-3" [class.toggled]="classToggled"
+                                style="border: none; box-shadow: none;">
+                                <div class="md-form">
+                                    <mat-form-field>
+                                        <mat-label>
+                                            Sport :
+                                        </mat-label>
+                                        <mat-select class="" name="sport" ngModel="" required>
+                                            <mat-option [value]="s" *ngFor="let s of sports">
+                                                {{s.nameSport}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <label>Score</label>
+                                <div class="md-form" [class.toggled]="classToggled">
+                                    <input id="newRanking" name="score" type='number' ngModel="" class="form-control"
+                                        required>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <button id="feedbtn" mat-button
+                                            style="width: auto; height : auto;">Ajouter</button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button id="feedbtn" mat-button (click)="visibleAddRankingFonction()"
+                                            style="width: auto; height : auto;">Annuler</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="container" *ngFor="let i of individu;" [class.toggled]="classToggled">
+                        <div class="row">
+                            <div class="col-5">
+                                <p>{{i.sport.nameSport}}</p>
+                            </div>
+                            <div class="col-2">
+                                <i *ngIf="i.sport.nameSport == 'Football' " class="fas fa-futbol"></i>
+                                <i *ngIf="i.sport.nameSport == 'Escalade' " class="fas fa-mountain"></i>
+                                <mat-icon style=" font-size: 0.73em;" *ngIf="i.sport.nameSport == 'Rugby'"
+                                    svgIcon="rugby" aria-hidden="false"></mat-icon>
+                                <mat-icon style=" font-size: 0.73em;" *ngIf="i.sport.nameSport == 'Course à pied' "
+                                    svgIcon="running" aria-hidden="false"></mat-icon>
+                                <mat-icon style=" font-size: 0.73em;" *ngIf="i.sport.nameSport == 'Natation' "
+                                    svgIcon="swim" aria-hidden="false"></mat-icon>
+                                <mat-icon style=" font-size: 0.73em;" *ngIf="i.sport.nameSport == 'Basketball' "
+                                    svgIcon="basket" aria-hidden="false"></mat-icon>
+                            </div>
+                            <div class="col-5">
+                                <p>{{i.score}} points</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

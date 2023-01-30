@@ -1,0 +1,95 @@
+<div class="container">
+    <div class="p-2 m-2 popup_event" *ngIf="nameActivity == null">
+        <div class="md-form">
+            <h2 class="text-center">Ajouter une activité</h2>
+        </div>
+        <form #infosEvent="ngForm" (ngSubmit)="createActivity(infosEvent.value)">
+            <div class="md-form">
+                <input placeholder="Titre" name="nameActivity" ngModel="" type="text" class="form-control" required>
+            </div>
+            <div class="md-form">
+                <mat-form-field>
+                    <mat-label>
+                        Sport :
+                    </mat-label>
+                    <mat-select class="" name="sportActivity" ngModel="" required>
+                        <mat-option [value]="s" *ngFor="let s of sports">
+                            {{s.nameSport}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="md-form">
+                <input placeholder="Date de début" name="dateStart" ngModel="" type="datetime-local"
+                    class="form-control" required>
+            </div>
+            <div class="md-form">
+                <input placeholder="Date de fin" name="dateEnd" ngModel="" type="datetime-local" class="form-control"
+                    required>
+            </div>
+            <div class="md-form">
+                <input placeholder="Description" name="descActivity" ngModel="" type="text" class="form-control"
+                    required>
+            </div>
+            <div class="md-form">
+                <label>Activité visible par vos amis </label>
+                <br><br>
+                <mat-slide-toggle name="publicActivity" [(ngModel)]="isChecked" ></mat-slide-toggle>
+            </div>
+            <div class="md-form">
+                <div class="row">
+                    <div class="col-6">
+                        <span class="input-group-btn" style="width:39px">
+                            <button [disabled]="!infosEvent.form.valid" type="submit"
+                                class="btn btn-secondary btn-block btn-sm" (click)=" onNoClick()">Ajouter l'activité</button>
+                        </span>
+                    </div>
+                    <div class="col-6 text-center">
+                        <button mat-button (click)="onNoClick()">Annuler</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="p-2 m-2 popup_event" *ngIf="nameActivity !== null">
+        <div class="md-form">
+            <h2 class="text-center">Modifier une activité</h2>
+        </div>
+        <form #infosEvent="ngForm" (ngSubmit)="modifyActivity(infosEvent.value)">
+            <div class="md-form">
+                <input placeholder="Titre" name="nameActivity" [(ngModel)]="nameActivity" type="text" class="form-control" required>
+            </div>
+            <div class="md-form">
+                <input placeholder="Date de début" name="dateStart" [(ngModel)]="dateStart" type="datetime-local"
+                    class="form-control" required>
+            </div>
+            <div class="md-form">
+                <input placeholder="Date de fin" name="dateEnd" [(ngModel)]="dateEnd" type="datetime-local" class="form-control"
+                    required>
+            </div>
+            <div class="md-form">
+                <input placeholder="Description" name="descActivity" [(ngModel)]="descActivity" type="text" class="form-control"
+                    required>
+            </div>
+            <div class="md-form">
+                <label>Activité visible par vos amis </label>
+                <br><br>
+                <mat-slide-toggle name="publicActivity" [(ngModel)]="isChecked" ></mat-slide-toggle>
+            </div>
+            <div class="md-form">
+                <div class="row">
+                    <div class="col-6">
+                        <span class="input-group-btn" style="width:39px">
+                            <button [disabled]="!infosEvent.form.valid" type="submit"
+                                class="btn btn-secondary btn-block btn-sm" (click)=" onNoClick()">modifier l'activité</button>
+                        </span>
+                    </div>
+                    <div class="col-6 text-center">
+                        <button mat-button (click)="onNoClick()">Annuler</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
